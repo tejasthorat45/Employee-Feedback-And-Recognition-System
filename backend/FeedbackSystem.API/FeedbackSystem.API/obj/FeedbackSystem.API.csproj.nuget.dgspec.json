@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Saurav\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\FeedbackSystem.API.csproj": {}
+    "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\FeedbackSystem.API.csproj": {}
   },
   "projects": {
-    "C:\\Saurav\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\FeedbackSystem.API.csproj": {
+    "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\FeedbackSystem.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Saurav\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\FeedbackSystem.API.csproj",
+        "projectUniqueName": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\FeedbackSystem.API.csproj",
         "projectName": "FeedbackSystem.API",
-        "projectPath": "C:\\Saurav\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\FeedbackSystem.API.csproj",
-        "packagesPath": "C:\\Users\\2463661\\.nuget\\packages\\",
-        "outputPath": "C:\\Saurav\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\obj\\",
+        "projectPath": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\FeedbackSystem.API.csproj",
+        "packagesPath": "C:\\Users\\2463712\\.nuget\\packages\\",
+        "outputPath": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\2463661\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\2463712\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -25,8 +25,7 @@
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
