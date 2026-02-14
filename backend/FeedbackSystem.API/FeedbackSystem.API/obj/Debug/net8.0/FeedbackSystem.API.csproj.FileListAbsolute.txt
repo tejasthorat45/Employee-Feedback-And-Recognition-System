@@ -447,3 +447,4 @@ C:\CTS_PROJECT\cts_feedback_project\backend\FeedbackSystem.API\FeedbackSystem.AP
 C:\CTS_PROJECT\cts_feedback_project\backend\FeedbackSystem.API\FeedbackSystem.API\obj\Debug\net8.0\FeedbackSystem.API.pdb
 C:\CTS_PROJECT\cts_feedback_project\backend\FeedbackSystem.API\FeedbackSystem.API\obj\Debug\net8.0\FeedbackSystem.API.genruntimeconfig.cache
 C:\CTS_PROJECT\cts_feedback_project\backend\FeedbackSystem.API\FeedbackSystem.API\obj\Debug\net8.0\ref\FeedbackSystem.API.dll
+C:\CTS_PROJECT\cts_feedback_project\backend\FeedbackSystem.API\FeedbackSystem.API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

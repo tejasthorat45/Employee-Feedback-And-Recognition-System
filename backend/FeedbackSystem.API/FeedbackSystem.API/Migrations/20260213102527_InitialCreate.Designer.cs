@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FeedbackSystem.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260209103334_UpdateRecognitionToUseCategoryTable")]
-    partial class UpdateRecognitionToUseCategoryTable
+    [Migration("20260213102527_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

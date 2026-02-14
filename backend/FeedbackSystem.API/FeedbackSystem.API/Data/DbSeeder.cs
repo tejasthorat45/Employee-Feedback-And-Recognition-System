@@ -36,6 +36,7 @@ public static class DbSeeder
         if (!await db.Departments.AnyAsync())
         {
             db.Departments.AddRange(
+                new Department { DepartmentName = "Engineer", Description = "Engineering department", IsActive = true },
                 new Department { DepartmentName = "Engineering", Description = "Product engineering", IsActive = true },
                 new Department { DepartmentName = "HR", Description = "Human resources", IsActive = true },
                 new Department { DepartmentName = "Sales", Description = "Revenue team", IsActive = true },
@@ -52,11 +53,19 @@ public static class DbSeeder
             .Select(r => r.RoleId)
             .FirstAsync();
 
-        // Prefer Engineering; fall back to General if Engineering not found for some reason
+        // Prefer Engineer; fall back to Engineering, then General
         var defaultDeptId = await db.Departments
-            .Where(d => d.DepartmentName == "Engineering")
+            .Where(d => d.DepartmentName == "Engineer")
             .Select(d => d.DepartmentId)
             .FirstOrDefaultAsync();
+
+        if (defaultDeptId == 0)
+        {
+            defaultDeptId = await db.Departments
+                .Where(d => d.DepartmentName == "Engineering")
+                .Select(d => d.DepartmentId)
+                .FirstOrDefaultAsync();
+        }
 
         if (defaultDeptId == 0)
         {
@@ -72,7 +81,7 @@ public static class DbSeeder
         {
             db.Users.Add(new User
             {
-                FullName = "System Administrator",
+                FullName = "admin001",
                 Email = "admin@local",
                 PasswordHash = PasswordHasher.Hash("Admin@123"),
                 RoleId = adminRoleId,
@@ -88,6 +97,20 @@ public static class DbSeeder
             if (admin.DepartmentId == 0)
             {
                 admin.DepartmentId = defaultDeptId;
+            }
+
+            if (admin.FullName != "admin001")
+            {
+                admin.FullName = "admin001";
+            }
+
+            if (admin.Email != "admin@local")
+            {
+                admin.Email = "admin@local";
+            }
+
+            if (admin.DepartmentId == 0 || admin.FullName != "admin001" || admin.Email != "admin@local")
+            {
                 await db.SaveChangesAsync();
             }
         }

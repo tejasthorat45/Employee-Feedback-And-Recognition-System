@@ -41,6 +41,22 @@ namespace FeedbackSystem.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Departments",
+                columns: table => new
+                {
+                    DepartmentId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DepartmentName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(225)", maxLength: 225, nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Departments", x => x.DepartmentId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Roles",
                 columns: table => new
                 {
@@ -66,11 +82,18 @@ namespace FeedbackSystem.API.Migrations
                     PasswordHash = table.Column<string>(type: "nvarchar(225)", maxLength: 225, nullable: false),
                     RoleId = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()")
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
+                    DepartmentId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.UserId);
+                    table.ForeignKey(
+                        name: "FK_Users_Departments",
+                        column: x => x.DepartmentId,
+                        principalTable: "Departments",
+                        principalColumn: "DepartmentId",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Users_Roles",
                         column: x => x.RoleId,
@@ -169,12 +192,21 @@ namespace FeedbackSystem.API.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FromUserId = table.Column<int>(type: "int", nullable: false),
                     ToUserId = table.Column<int>(type: "int", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    Points = table.Column<int>(type: "int", nullable: false),
                     Message = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Recognition", x => x.RecognitionId);
+                    table.CheckConstraint("CK_Recognition_Points_Range", "[Points] BETWEEN 1 AND 10");
+                    table.ForeignKey(
+                        name: "FK_Recognition_Category",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "CategoryId",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Recognition_FromUser",
                         column: x => x.FromUserId,
@@ -235,6 +267,12 @@ namespace FeedbackSystem.API.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Departments_DepartmentName",
+                table: "Departments",
+                column: "DepartmentName",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Feedback_CategoryId",
                 table: "Feedback",
                 column: "CategoryId");
@@ -265,6 +303,11 @@ namespace FeedbackSystem.API.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Recognition_CategoryId",
+                table: "Recognition",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Recognition_FromUserId",
                 table: "Recognition",
                 column: "FromUserId");
@@ -279,6 +322,11 @@ namespace FeedbackSystem.API.Migrations
                 table: "Roles",
                 column: "RoleName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_DepartmentId",
+                table: "Users",
+                column: "DepartmentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_Email",
@@ -318,6 +366,9 @@ namespace FeedbackSystem.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Departments");
 
             migrationBuilder.DropTable(
                 name: "Roles");
