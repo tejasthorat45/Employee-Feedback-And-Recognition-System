@@ -450,7 +450,6 @@ C:\CTS_PROJECT\cts_feedback_project\backend\FeedbackSystem.API\FeedbackSystem.AP
 C:\CTS_PROJECT\cts_feedback_project\backend\FeedbackSystem.API\FeedbackSystem.API\obj\Debug\net8.0\ref\FeedbackSystem.API.dll
 C:\CTS_PROJECT\cts_feedback_project\backend\FeedbackSystem.API\FeedbackSystem.API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 =======
-<<<<<<< HEAD
 C:\Abhishek\Final_Project\cts_feedback_project\backend\FeedbackSystem.API\FeedbackSystem.API\bin\Debug\net8.0\appsettings.Development.json
 C:\Abhishek\Final_Project\cts_feedback_project\backend\FeedbackSystem.API\FeedbackSystem.API\bin\Debug\net8.0\appsettings.json
 C:\Abhishek\Final_Project\cts_feedback_project\backend\FeedbackSystem.API\FeedbackSystem.API\bin\Debug\net8.0\FeedbackSystem.API.staticwebassets.endpoints.json
@@ -601,7 +600,6 @@ C:\Abhishek\Final_Project\cts_feedback_project\backend\FeedbackSystem.API\Feedba
 C:\Abhishek\Final_Project\cts_feedback_project\backend\FeedbackSystem.API\FeedbackSystem.API\obj\Debug\net8.0\FeedbackSystem.API.pdb
 C:\Abhishek\Final_Project\cts_feedback_project\backend\FeedbackSystem.API\FeedbackSystem.API\obj\Debug\net8.0\FeedbackSystem.API.genruntimeconfig.cache
 C:\Abhishek\Final_Project\cts_feedback_project\backend\FeedbackSystem.API\FeedbackSystem.API\obj\Debug\net8.0\ref\FeedbackSystem.API.dll
-=======
 C:\roshan\cts_feedback_project\backend\FeedbackSystem.API\FeedbackSystem.API\bin\Debug\net8.0\appsettings.Development.json
 C:\roshan\cts_feedback_project\backend\FeedbackSystem.API\FeedbackSystem.API\bin\Debug\net8.0\appsettings.json
 C:\roshan\cts_feedback_project\backend\FeedbackSystem.API\FeedbackSystem.API\bin\Debug\net8.0\FeedbackSystem.API.staticwebassets.endpoints.json
