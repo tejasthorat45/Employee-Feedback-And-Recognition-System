@@ -10,6 +10,7 @@ import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 
 import { authGuard } from '../core/guards/auth.guard';
 import { roleGuard } from '../core/guards/role.guard';
+import { DepartmentManagementComponent } from './department-management/department-management.component';
 
 export const ADMIN_ROUTES: Routes = [
   {
@@ -24,6 +25,7 @@ export const ADMIN_ROUTES: Routes = [
       { path: 'categories', component: CategoryManagementComponent },
       { path: 'reports', component: AdminReportsComponent },
       { path: 'settings', component: AdminSettingsComponent },
+      { path: 'departments', component: DepartmentManagementComponent },
       { path: '**', component: AdminDashboardComponent  },
 
     ]

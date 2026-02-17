@@ -31,13 +31,22 @@ export class ReceivedRecognitionComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    // Load Data DIRECTLY into the Signal
-    const data = this.empService.getMyRecognitions();
-    this.rawRecognitions.set(data);
+    // Load Data from API into the Signal
+    this.empService.getMyRecognitions().subscribe({
+      next: (response) => {
+        const data = response.items || response || [];
+        this.rawRecognitions.set(data);
+      },
+      error: (error) => {
+        console.error('Error loading recognitions:', error);
+        this.rawRecognitions.set([]);
+      }
+    });
   }
 
 
-  getBadgeTheme(badge: string, points: number) {
+  getBadgeTheme(badge: string | undefined, points: number) {
+    const badgeName = badge || 'Default';
     const icons: Record<string, string> = {
       'Leader': 'bi-rocket-takeoff-fill',
       'Team Player': 'bi-people-fill',
@@ -59,7 +68,7 @@ export class ReceivedRecognitionComponent implements OnInit {
 
     return {
       color: themeColor,
-      icon: icons[badge] || 'bi-award'
+      icon: icons[badgeName] || 'bi-award'
     };
   }
 }

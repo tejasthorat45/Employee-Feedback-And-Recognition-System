@@ -13,7 +13,7 @@ namespace FeedbackSystem.API.Repositories
             => _db.Recognitions.CountAsync(ct);
 
         public async Task<(IReadOnlyList<RecognitionItemDto> Items, int Total)> GetGivenAsync(
-            int userId, DateTime? from, DateTime? to, string? search, int page, int pageSize, CancellationToken ct)
+            string userId, DateTime? from, DateTime? to, string? search, int page, int pageSize, CancellationToken ct)
         {
             var q = _db.Recognitions.AsNoTracking().Where(r => r.FromUserId == userId);
 
@@ -32,8 +32,8 @@ namespace FeedbackSystem.API.Repositories
                     r.FromUser.FullName,
                     r.ToUserId,
                     r.ToUser.FullName,
-                    r.CategoryId,
-                    r.Category.CategoryName,
+                    r.BadgeId,
+                    r.Badge.BadgeName,
                     r.Points,
                     r.Message,
                     r.CreatedAt
@@ -44,7 +44,7 @@ namespace FeedbackSystem.API.Repositories
         }
 
         public async Task<(IReadOnlyList<RecognitionItemDto> Items, int Total)> GetReceivedAsync(
-            int userId, DateTime? from, DateTime? to, string? search, int page, int pageSize, CancellationToken ct)
+            string userId, DateTime? from, DateTime? to, string? search, int page, int pageSize, CancellationToken ct)
         {
             var q = _db.Recognitions.AsNoTracking().Where(r => r.ToUserId == userId);
 
@@ -63,8 +63,8 @@ namespace FeedbackSystem.API.Repositories
                     r.FromUser.FullName,
                     r.ToUserId,
                     r.ToUser.FullName,
-                    r.CategoryId,
-                    r.Category.CategoryName,
+                    r.BadgeId,
+                    r.Badge.BadgeName,
                     r.Points,
                     r.Message,
                     r.CreatedAt
@@ -75,8 +75,8 @@ namespace FeedbackSystem.API.Repositories
         }
 
         public async Task<(IReadOnlyList<RecognitionItemDto> Items, int Total)> GetAllAsync(
-            DateTime? from, DateTime? to, string? search, int? departmentScopeId,
-            int? fromUserId, int? toUserId, int page, int pageSize, CancellationToken ct)
+            DateTime? from, DateTime? to, string? search, string? departmentScopeId,
+            string? fromUserId, string? toUserId, int page, int pageSize, CancellationToken ct)
         {
             var q = ApplyAllFilters(from, to, search, departmentScopeId, fromUserId, toUserId);
 
@@ -91,8 +91,8 @@ namespace FeedbackSystem.API.Repositories
                     r.FromUser.FullName,
                     r.ToUserId,
                     r.ToUser.FullName,
-                    r.CategoryId,
-                    r.Category.CategoryName,
+                    r.BadgeId,
+                    r.Badge.BadgeName,
                     r.Points,
                     r.Message,
                     r.CreatedAt
@@ -104,15 +104,15 @@ namespace FeedbackSystem.API.Repositories
 
         // ✅ Count-only (same filters)
         public Task<int> CountAllAsync(
-            DateTime? from, DateTime? to, string? search, int? departmentScopeId,
-            int? fromUserId, int? toUserId, CancellationToken ct)
+            DateTime? from, DateTime? to, string? search, string? departmentScopeId,
+            string? fromUserId, string? toUserId, CancellationToken ct)
         {
             var q = ApplyAllFilters(from, to, search, departmentScopeId, fromUserId, toUserId);
             return q.CountAsync(ct);
         }
 
         public async Task<(int Given, int Received, DateTime? LatestGivenAt, DateTime? LatestReceivedAt)> GetSummaryAsync(
-            int userId, CancellationToken ct)
+            string userId, CancellationToken ct)
         {
             var givenCountTask = _db.Recognitions.AsNoTracking().CountAsync(r => r.FromUserId == userId, ct);
             var receivedCountTask = _db.Recognitions.AsNoTracking().CountAsync(r => r.ToUserId == userId, ct);
@@ -136,20 +136,20 @@ namespace FeedbackSystem.API.Repositories
 
         // -------------- private helpers --------------
         private IQueryable<Entities.Recognition> ApplyAllFilters(
-            DateTime? from, DateTime? to, string? search, int? departmentScopeId,
-            int? fromUserId, int? toUserId)
+            DateTime? from, DateTime? to, string? search, string? departmentScopeId,
+            string? fromUserId, string? toUserId)
         {
             var q = _db.Recognitions.AsNoTracking().AsQueryable();
 
             if (from.HasValue) q = q.Where(r => r.CreatedAt >= from.Value);
             if (to.HasValue)   q = q.Where(r => r.CreatedAt <= to.Value);
             if (!string.IsNullOrWhiteSpace(search)) q = q.Where(r => r.Message.Contains(search.Trim()));
-            if (fromUserId.HasValue && fromUserId.Value > 0) q = q.Where(r => r.FromUserId == fromUserId.Value);
-            if (toUserId.HasValue && toUserId.Value > 0)     q = q.Where(r => r.ToUserId == toUserId.Value);
+            if (!string.IsNullOrWhiteSpace(fromUserId)) q = q.Where(r => r.FromUserId == fromUserId);
+            if (!string.IsNullOrWhiteSpace(toUserId))     q = q.Where(r => r.ToUserId == toUserId);
 
-            if (departmentScopeId.HasValue && departmentScopeId.Value > 0)
+            if (!string.IsNullOrWhiteSpace(departmentScopeId))
             {
-                var depId = departmentScopeId.Value;
+                var depId = departmentScopeId;
                 q = q.Where(r => r.FromUser.DepartmentId == depId || r.ToUser.DepartmentId == depId);
             }
 
@@ -157,28 +157,28 @@ namespace FeedbackSystem.API.Repositories
         }
 
         // ✅ Category statistics
-        public async Task<IReadOnlyList<RecognitionCategoryStatsDto>> GetByCategoryAsync(
-            DateTime? from, DateTime? to, int? departmentScopeId, int? userId, CancellationToken ct)
+        public async Task<IReadOnlyList<RecognitionBadgeStatsDto>> GetByBadgeAsync(
+            DateTime? from, DateTime? to, string? departmentScopeId, string? userId, CancellationToken ct)
         {
             var q = _db.Recognitions.AsNoTracking().AsQueryable();
 
             if (from.HasValue) q = q.Where(r => r.CreatedAt >= from.Value);
             if (to.HasValue)   q = q.Where(r => r.CreatedAt <= to.Value);
 
-            if (departmentScopeId.HasValue && departmentScopeId.Value > 0)
+            if (!string.IsNullOrWhiteSpace(departmentScopeId))
             {
-                var depId = departmentScopeId.Value;
+                var depId = departmentScopeId;
                 q = q.Where(r => r.FromUser.DepartmentId == depId || r.ToUser.DepartmentId == depId);
             }
 
-            if (userId.HasValue)
-                q = q.Where(r => r.FromUserId == userId.Value || r.ToUserId == userId.Value);
+            if (!string.IsNullOrWhiteSpace(userId))
+                q = q.Where(r => r.FromUserId == userId || r.ToUserId == userId);
 
             return await q
-                .GroupBy(r => new { r.CategoryId, r.Category.CategoryName })
-                .Select(g => new RecognitionCategoryStatsDto(
-                    g.Key.CategoryId,
-                    g.Key.CategoryName,
+                .GroupBy(r => new { r.BadgeId, r.Badge.BadgeName })
+                .Select(g => new RecognitionBadgeStatsDto(
+                    g.Key.BadgeId,
+                    g.Key.BadgeName,
                     g.Count(),
                     g.Max(r => (DateTime?)r.CreatedAt)
                 ))

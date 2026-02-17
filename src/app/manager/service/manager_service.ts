@@ -1,4 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { SettingsService } from '../../core/services/settings.service';
+import { AppSettings } from '../../core/models/settings.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -6,6 +9,7 @@ import { Injectable } from '@angular/core';
 export class ManagerService {
   private feedbackKey = 'feedback_db';
   private recognitionKey = 'recognition_db';
+  private settingsService = inject(SettingsService);
 
   // --- Feedback Logic ---   
   getAllFeedback(): any[] {
@@ -26,5 +30,18 @@ export class ManagerService {
       feedbacks[index].status = newStatus;
       localStorage.setItem(this.feedbackKey, JSON.stringify(feedbacks));
     }
+  }
+
+  // --- Settings Integration ---
+  getSettings(): Observable<AppSettings> {
+    return this.settingsService.getSettings();
+  }
+
+  getCachedSettings(): AppSettings | null {
+    return this.settingsService.getCachedSettings();
+  }
+
+  getSettings$(): Observable<AppSettings | null> {
+    return this.settingsService.getSettings$();
   }
 }

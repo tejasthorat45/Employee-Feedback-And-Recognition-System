@@ -3,9 +3,9 @@
     public class Feedback
     {
         public int FeedbackId { get; set; }
-        public int FromUserId { get; set; }
-        public int ToUserId { get; set; }
-        public int CategoryId { get; set; }
+        public string FromUserId { get; set; } = null!;
+        public string ToUserId { get; set; } = null!;
+        public string CategoryId { get; set; } = null!;
         public string Comments { get; set; } = null!;
         public bool IsAnonymous { get; set; }
         public DateTime CreatedAt { get; set; }

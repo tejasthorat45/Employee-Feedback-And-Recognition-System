@@ -1,2 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
+
+/* Remove card-surface wrapper styling for full-bleed child pages */
+.card-surface:has(> app-admin-settings),
+.card-surface:has(> app-admin-reports),
+.card-surface:has(> app-admin-dashboard) {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}

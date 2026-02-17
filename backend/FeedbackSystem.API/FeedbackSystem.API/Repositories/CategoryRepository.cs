@@ -12,7 +12,7 @@ public class CategoryRepository : ICategoryRepository
     public Task<List<Category>> GetAllAsync(CancellationToken ct = default) =>
         _db.Categories.AsNoTracking().OrderBy(x => x.CategoryName).ToListAsync(ct);
 
-    public Task<Category?> GetByIdAsync(int id, CancellationToken ct = default) =>
+    public Task<Category?> GetByIdAsync(string id, CancellationToken ct = default) =>
         _db.Categories.AsNoTracking().FirstOrDefaultAsync(x => x.CategoryId == id, ct);
 
     public async Task<Category> AddAsync(Category entity, CancellationToken ct = default)

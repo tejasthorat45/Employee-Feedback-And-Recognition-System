@@ -153,7 +153,7 @@
     "Parameters": [
       {
         "Name": "id",
-        "Type": "System.Int32",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -179,7 +179,7 @@
     "Parameters": [
       {
         "Name": "id",
-        "Type": "System.Int32",
+        "Type": "System.String",
         "IsRequired": true
       },
       {
@@ -200,7 +200,7 @@
     "Parameters": [
       {
         "Name": "id",
-        "Type": "System.Int32",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -262,7 +262,11 @@
     "Parameters": [
       {
         "Name": "id",
+<<<<<<< HEAD
         "Type": "System.Int32",
+=======
+        "Type": "System.String",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
         "IsRequired": true
       }
     ],
@@ -288,7 +292,11 @@
     "Parameters": [
       {
         "Name": "id",
+<<<<<<< HEAD
         "Type": "System.Int32",
+=======
+        "Type": "System.String",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
         "IsRequired": true
       },
       {
@@ -309,7 +317,11 @@
     "Parameters": [
       {
         "Name": "id",
+<<<<<<< HEAD
         "Type": "System.Int32",
+=======
+        "Type": "System.String",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
         "IsRequired": true
       }
     ],
@@ -335,7 +347,11 @@
       },
       {
         "Name": "categoryId",
+<<<<<<< HEAD
         "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+=======
+        "Type": "System.String",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
         "IsRequired": false
       },
       {
@@ -345,17 +361,29 @@
       },
       {
         "Name": "departmentId",
+<<<<<<< HEAD
         "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+=======
+        "Type": "System.String",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
         "IsRequired": false
       },
       {
         "Name": "fromUserId",
+<<<<<<< HEAD
         "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+=======
+        "Type": "System.String",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
         "IsRequired": false
       },
       {
         "Name": "toUserId",
+<<<<<<< HEAD
         "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+=======
+        "Type": "System.String",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
         "IsRequired": false
       },
       {
@@ -421,7 +449,11 @@
       },
       {
         "Name": "categoryId",
+<<<<<<< HEAD
         "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+=======
+        "Type": "System.String",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
         "IsRequired": false
       },
       {
@@ -431,17 +463,29 @@
       },
       {
         "Name": "departmentId",
+<<<<<<< HEAD
         "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+=======
+        "Type": "System.String",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
         "IsRequired": false
       },
       {
         "Name": "fromUserId",
+<<<<<<< HEAD
         "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+=======
+        "Type": "System.String",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
         "IsRequired": false
       },
       {
         "Name": "toUserId",
+<<<<<<< HEAD
         "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+=======
+        "Type": "System.String",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
         "IsRequired": false
       }
     ],
@@ -482,17 +526,29 @@
       },
       {
         "Name": "departmentId",
+<<<<<<< HEAD
         "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+=======
+        "Type": "System.String",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
         "IsRequired": false
       },
       {
         "Name": "fromUserId",
+<<<<<<< HEAD
         "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+=======
+        "Type": "System.String",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
         "IsRequired": false
       },
       {
         "Name": "toUserId",
+<<<<<<< HEAD
         "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+=======
+        "Type": "System.String",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
         "IsRequired": false
       },
       {
@@ -563,17 +619,29 @@
       },
       {
         "Name": "departmentId",
+<<<<<<< HEAD
         "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+=======
+        "Type": "System.String",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
         "IsRequired": false
       },
       {
         "Name": "fromUserId",
+<<<<<<< HEAD
         "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+=======
+        "Type": "System.String",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
         "IsRequired": false
       },
       {
         "Name": "toUserId",
+<<<<<<< HEAD
         "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+=======
+        "Type": "System.String",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
         "IsRequired": false
       }
     ],
@@ -599,7 +667,11 @@
     "Parameters": [
       {
         "Name": "userId",
+<<<<<<< HEAD
         "Type": "System.Int32",
+=======
+        "Type": "System.String",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
         "IsRequired": true
       },
       {
@@ -614,7 +686,11 @@
       },
       {
         "Name": "categoryId",
+<<<<<<< HEAD
         "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+=======
+        "Type": "System.String",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
         "IsRequired": false
       },
       {
@@ -655,7 +731,11 @@
     "Parameters": [
       {
         "Name": "userId",
+<<<<<<< HEAD
         "Type": "System.Int32",
+=======
+        "Type": "System.String",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
         "IsRequired": true
       },
       {
@@ -670,7 +750,11 @@
       },
       {
         "Name": "categoryId",
+<<<<<<< HEAD
         "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+=======
+        "Type": "System.String",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
         "IsRequired": false
       },
       {
@@ -711,7 +795,11 @@
     "Parameters": [
       {
         "Name": "userId",
+<<<<<<< HEAD
         "Type": "System.Int32",
+=======
+        "Type": "System.String",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
         "IsRequired": true
       }
     ],
@@ -737,7 +825,11 @@
     "Parameters": [
       {
         "Name": "userId",
+<<<<<<< HEAD
         "Type": "System.Int32",
+=======
+        "Type": "System.String",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
         "IsRequired": true
       },
       {
@@ -788,7 +880,11 @@
     "Parameters": [
       {
         "Name": "userId",
+<<<<<<< HEAD
         "Type": "System.Int32",
+=======
+        "Type": "System.String",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
         "IsRequired": true
       },
       {
@@ -885,7 +981,7 @@
     "Parameters": [
       {
         "Name": "id",
-        "Type": "System.Int32",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -911,7 +1007,7 @@
     "Parameters": [
       {
         "Name": "id",
-        "Type": "System.Int32",
+        "Type": "System.String",
         "IsRequired": true
       },
       {
@@ -932,7 +1028,7 @@
     "Parameters": [
       {
         "Name": "id",
-        "Type": "System.Int32",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],

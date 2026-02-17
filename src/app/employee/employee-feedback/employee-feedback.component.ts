@@ -36,8 +36,16 @@ export class EmployeeFeedbackComponent implements OnInit {
     this.currentUser=this.empService.getCurrentUser();
     //this.feedbackList = this.empService.getMyReceivedFeedback();
     //load data into signal
-    const data = this.empService.getMyReceivedFeedback();  //backend se data lana hai 
-    this.rawFeedback.set(data);
+    this.empService.getMyReceivedFeedback().subscribe({
+      next: (response) => {
+        const data = response.items || response || [];
+        this.rawFeedback.set(data);
+      },
+      error: (error) => {
+        console.error('Error loading feedback:', error);
+        this.rawFeedback.set([]);
+      }
+    });
 
   }
 

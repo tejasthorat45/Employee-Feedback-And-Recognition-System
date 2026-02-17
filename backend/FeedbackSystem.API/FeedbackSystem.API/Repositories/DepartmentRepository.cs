@@ -9,17 +9,17 @@ public class DepartmentRepository : IDepartmentRepository
     private readonly AppDbContext _db;
     public DepartmentRepository(AppDbContext db) => _db = db;
 
-    public Task<Department?> GetByIdAsync(int id, CancellationToken ct = default) =>
-        _db.Departments.FirstOrDefaultAsync(d => d.DepartmentId == id, ct);
+    public Task<Department?> GetByIdAsync(string id, CancellationToken ct = default) =>
+        _db.Departments.Include(d => d.Users).FirstOrDefaultAsync(d => d.DepartmentId == id, ct);
 
     public Task<List<Department>> GetAllAsync(CancellationToken ct = default) =>
         _db.Departments.OrderBy(d => d.DepartmentName).ToListAsync(ct);
 
-    public Task<bool> DepartmentNameExistsAsync(string name, int? excludeId = null, CancellationToken ct = default)
+    public Task<bool> DepartmentNameExistsAsync(string name, string? excludeId = null, CancellationToken ct = default)
     {
         var query = _db.Departments.Where(d => d.DepartmentName == name);
-        if (excludeId.HasValue)
-            query = query.Where(d => d.DepartmentId != excludeId.Value);
+        if (excludeId != null)
+            query = query.Where(d => d.DepartmentId != excludeId);
         return query.AnyAsync(ct);
     }
 

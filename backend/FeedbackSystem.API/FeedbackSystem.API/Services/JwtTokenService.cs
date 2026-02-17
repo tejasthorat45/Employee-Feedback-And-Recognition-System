@@ -28,11 +28,12 @@ namespace FeedbackSystem.API.Services
 
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                new Claim(JwtRegisteredClaimNames.Sub, user.UserId),  // Standard: Subject = UserId
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(JwtRegisteredClaimNames.UniqueName, user.FullName),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString())
+                new Claim(ClaimTypes.NameIdentifier, user.UserId),  // Custom claim for backend
+                new Claim("userId", user.UserId)  // Explicit userId claim for clarity
             };
 
             // Add role claim only if present to avoid null issues

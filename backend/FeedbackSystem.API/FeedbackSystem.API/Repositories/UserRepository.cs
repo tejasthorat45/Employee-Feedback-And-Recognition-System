@@ -12,7 +12,7 @@ public class UserRepository : IUserRepository
     public Task<User?> GetByEmailAsync(string email, CancellationToken ct = default) =>
         _db.Users.Include(u => u.Role).Include(u => u.Department).FirstOrDefaultAsync(u => u.Email == email, ct);
 
-    public Task<User?> GetByIdAsync(int id, CancellationToken ct = default) =>
+    public Task<User?> GetByIdAsync(string id, CancellationToken ct = default) =>
         _db.Users.Include(u => u.Role).Include(u => u.Department).FirstOrDefaultAsync(u => u.UserId == id, ct);
 
     public Task<List<User>> GetAllAsync(CancellationToken ct = default) =>
@@ -24,7 +24,7 @@ public class UserRepository : IUserRepository
     public Task<Role?> GetRoleByNameAsync(string roleName, CancellationToken ct = default) =>
         _db.Roles.FirstOrDefaultAsync(r => r.RoleName == roleName, ct);
 
-    public Task<Department?> GetDepartmentByIdAsync(int departmentId, CancellationToken ct = default) =>
+    public Task<Department?> GetDepartmentByIdAsync(string departmentId, CancellationToken ct = default) =>
         _db.Departments.FirstOrDefaultAsync(d => d.DepartmentId == departmentId && d.IsActive, ct);
 
     public async Task<User> AddAsync(User user, CancellationToken ct = default)
@@ -54,17 +54,33 @@ public class UserRepository : IUserRepository
         _db.Users.CountAsync(u => u.IsActive, ct);
 
     // ✅ Helpers for InsightsService
-    public Task<bool> UserExistsAsync(int userId, CancellationToken ct = default) =>
+    public Task<bool> UserExistsAsync(string userId, CancellationToken ct = default) =>
         _db.Users.AsNoTracking().AnyAsync(u => u.UserId == userId, ct);
 
-    public async Task<int> GetDepartmentIdAsync(int userId, CancellationToken ct = default)
+    public async Task<string> GetDepartmentIdAsync(string userId, CancellationToken ct = default)
     {
         var depId = await _db.Users.AsNoTracking()
             .Where(u => u.UserId == userId)
             .Select(u => u.DepartmentId)
             .FirstOrDefaultAsync(ct);
 
-        if (depId == 0) throw new InvalidOperationException("Requester has no department assigned.");
+        if (string.IsNullOrEmpty(depId)) throw new InvalidOperationException("Requester has no department assigned.");
         return depId;
+    }
+
+    // ✅ Search
+    public Task<List<User>> SearchAsync(string query, CancellationToken ct = default)
+    {
+        var lowerQuery = query.ToLower();
+        return _db.Users
+            .Include(u => u.Role)
+            .Include(u => u.Department)
+            .Where(u => u.IsActive && 
+                       (u.FullName.ToLower().Contains(lowerQuery) || 
+                        u.Email.ToLower().Contains(lowerQuery) ||
+                        u.UserId.ToLower().Contains(lowerQuery)))
+            .OrderBy(u => u.FullName)
+            .Take(20)
+            .ToListAsync(ct);
     }
 }

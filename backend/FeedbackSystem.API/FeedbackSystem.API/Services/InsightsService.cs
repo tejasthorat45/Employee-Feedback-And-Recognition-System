@@ -17,11 +17,11 @@ namespace FeedbackSystem.API.Services
         }
 
         public async Task<PagedResult<FeedbackItemDto>> GetFeedbackGivenAsync(
-            int requesterUserId, bool isAdmin,
-            int userId, DateTime? from, DateTime? to, int? categoryId, string? search, int page, int pageSize, CancellationToken ct)
+            string requesterUserId, bool isAdmin,
+            string userId, DateTime? from, DateTime? to, string? categoryId, string? search, int page, int pageSize, CancellationToken ct)
         {
             await EnsureUserExists(userId, ct);
-            var managerDeptId = isAdmin ? (int?)null : await GetDepartmentId(requesterUserId, ct);
+            var managerDeptId = isAdmin ? null : await GetDepartmentId(requesterUserId, ct);
             if (!isAdmin) await EnsureManagerCanSeeUser(managerDeptId, userId, ct);
 
             NormalizePaging(ref page, ref pageSize);
@@ -30,11 +30,11 @@ namespace FeedbackSystem.API.Services
         }
 
         public async Task<PagedResult<FeedbackItemDto>> GetFeedbackReceivedAsync(
-            int requesterUserId, bool isAdmin,
-            int userId, DateTime? from, DateTime? to, int? categoryId, string? search, int page, int pageSize, CancellationToken ct)
+            string requesterUserId, bool isAdmin,
+            string userId, DateTime? from, DateTime? to, string? categoryId, string? search, int page, int pageSize, CancellationToken ct)
         {
             await EnsureUserExists(userId, ct);
-            var managerDeptId = isAdmin ? (int?)null : await GetDepartmentId(requesterUserId, ct);
+            var managerDeptId = isAdmin ? null : await GetDepartmentId(requesterUserId, ct);
             if (!isAdmin) await EnsureManagerCanSeeUser(managerDeptId, userId, ct);
 
             NormalizePaging(ref page, ref pageSize);
@@ -43,11 +43,11 @@ namespace FeedbackSystem.API.Services
         }
 
         public async Task<PagedResult<RecognitionItemDto>> GetRecognitionsGivenAsync(
-            int requesterUserId, bool isAdmin,
-            int userId, DateTime? from, DateTime? to, string? search, int page, int pageSize, CancellationToken ct)
+            string requesterUserId, bool isAdmin,
+            string userId, DateTime? from, DateTime? to, string? search, int page, int pageSize, CancellationToken ct)
         {
             await EnsureUserExists(userId, ct);
-            var managerDeptId = isAdmin ? (int?)null : await GetDepartmentId(requesterUserId, ct);
+            var managerDeptId = isAdmin ? null : await GetDepartmentId(requesterUserId, ct);
             if (!isAdmin) await EnsureManagerCanSeeUser(managerDeptId, userId, ct);
 
             NormalizePaging(ref page, ref pageSize);
@@ -56,11 +56,11 @@ namespace FeedbackSystem.API.Services
         }
 
         public async Task<PagedResult<RecognitionItemDto>> GetRecognitionsReceivedAsync(
-            int requesterUserId, bool isAdmin,
-            int userId, DateTime? from, DateTime? to, string? search, int page, int pageSize, CancellationToken ct)
+            string requesterUserId, bool isAdmin,
+            string userId, DateTime? from, DateTime? to, string? search, int page, int pageSize, CancellationToken ct)
         {
             await EnsureUserExists(userId, ct);
-            var managerDeptId = isAdmin ? (int?)null : await GetDepartmentId(requesterUserId, ct);
+            var managerDeptId = isAdmin ? null : await GetDepartmentId(requesterUserId, ct);
             if (!isAdmin) await EnsureManagerCanSeeUser(managerDeptId, userId, ct);
 
             NormalizePaging(ref page, ref pageSize);
@@ -69,10 +69,10 @@ namespace FeedbackSystem.API.Services
         }
 
         public async Task<UserInsightSummaryDto> GetSummaryAsync(
-            int requesterUserId, bool isAdmin, int userId, CancellationToken ct)
+            string requesterUserId, bool isAdmin, string userId, CancellationToken ct)
         {
             await EnsureUserExists(userId, ct);
-            var managerDeptId = isAdmin ? (int?)null : await GetDepartmentId(requesterUserId, ct);
+            var managerDeptId = isAdmin ? null : await GetDepartmentId(requesterUserId, ct);
             if (!isAdmin) await EnsureManagerCanSeeUser(managerDeptId, userId, ct);
 
             var fbTask = _feedbackRepo.GetSummaryAsync(userId, ct);
@@ -92,11 +92,11 @@ namespace FeedbackSystem.API.Services
         }
 
         public async Task<PagedResult<FeedbackItemDto>> GetAllFeedbackAsync(
-            int requesterUserId, bool isAdmin, FeedbackAllFilter filter, CancellationToken ct)
+            string requesterUserId, bool isAdmin, FeedbackAllFilter filter, CancellationToken ct)
         {
             NormalizePaging(ref filter);
 
-            int? deptScope = null;
+            string? deptScope = null;
             if (!isAdmin)
                 deptScope = await GetDepartmentId(requesterUserId, ct);
 
@@ -108,11 +108,11 @@ namespace FeedbackSystem.API.Services
         }
 
         public async Task<PagedResult<RecognitionItemDto>> GetAllRecognitionsAsync(
-            int requesterUserId, bool isAdmin, RecognitionAllFilter filter, CancellationToken ct)
+            string requesterUserId, bool isAdmin, RecognitionAllFilter filter, CancellationToken ct)
         {
             NormalizePaging(ref filter);
 
-            int? deptScope = null;
+            string? deptScope = null;
             if (!isAdmin)
                 deptScope = await GetDepartmentId(requesterUserId, ct);
 
@@ -125,9 +125,9 @@ namespace FeedbackSystem.API.Services
 
         // ✅ Count-only across users
         public async Task<CountResultDto> GetAllFeedbackCountAsync(
-            int requesterUserId, bool isAdmin, FeedbackAllFilter filter, CancellationToken ct)
+            string requesterUserId, bool isAdmin, FeedbackAllFilter filter, CancellationToken ct)
         {
-            int? deptScope = null;
+            string? deptScope = null;
             if (!isAdmin)
                 deptScope = await GetDepartmentId(requesterUserId, ct);
 
@@ -139,9 +139,9 @@ namespace FeedbackSystem.API.Services
         }
 
         public async Task<CountResultDto> GetAllRecognitionsCountAsync(
-            int requesterUserId, bool isAdmin, RecognitionAllFilter filter, CancellationToken ct)
+            string requesterUserId, bool isAdmin, RecognitionAllFilter filter, CancellationToken ct)
         {
-            int? deptScope = null;
+            string? deptScope = null;
             if (!isAdmin)
                 deptScope = await GetDepartmentId(requesterUserId, ct);
 
@@ -154,9 +154,9 @@ namespace FeedbackSystem.API.Services
 
         // ✅ Category-based statistics
         public async Task<IReadOnlyList<CategoryStatsDto>> GetFeedbackByCategoryAsync(
-            int requesterUserId, bool isAdmin, CategoryStatsFilter filter, CancellationToken ct)
+            string requesterUserId, bool isAdmin, CategoryStatsFilter filter, CancellationToken ct)
         {
-            int? deptScope = null;
+            string? deptScope = null;
             if (!isAdmin)
                 deptScope = await _userRepo.GetDepartmentIdAsync(requesterUserId, ct);
 
@@ -164,15 +164,15 @@ namespace FeedbackSystem.API.Services
             return await _feedbackRepo.GetByCategoryAsync(filter.From, filter.To, targetDept, filter.UserId, ct);
         }
 
-        public async Task<IReadOnlyList<RecognitionCategoryStatsDto>> GetRecognitionsByCategoryAsync(
-            int requesterUserId, bool isAdmin, CategoryStatsFilter filter, CancellationToken ct)
+        public async Task<IReadOnlyList<RecognitionBadgeStatsDto>> GetRecognitionsByBadgeAsync(
+            string requesterUserId, bool isAdmin, CategoryStatsFilter filter, CancellationToken ct)
         {
-            int? deptScope = null;
+            string? deptScope = null;
             if (!isAdmin)
                 deptScope = await _userRepo.GetDepartmentIdAsync(requesterUserId, ct);
 
             var targetDept = filter.DepartmentId ?? deptScope;
-            return await _recognitionRepo.GetByCategoryAsync(filter.From, filter.To, targetDept, filter.UserId, ct);
+            return await _recognitionRepo.GetByBadgeAsync(filter.From, filter.To, targetDept, filter.UserId, ct);
         }
 
         // ✅ Parameterless by-category (all data, no filters)
@@ -181,29 +181,29 @@ namespace FeedbackSystem.API.Services
             return await _feedbackRepo.GetByCategoryAsync(null, null, null, null, ct);
         }
 
-        public async Task<IReadOnlyList<RecognitionCategoryStatsDto>> GetRecognitionsByCategoryAsync(CancellationToken ct)
+        public async Task<IReadOnlyList<RecognitionBadgeStatsDto>> GetRecognitionsByBadgeAsync(CancellationToken ct)
         {
-            return await _recognitionRepo.GetByCategoryAsync(null, null, null, null, ct);
+            return await _recognitionRepo.GetByBadgeAsync(null, null, null, null, ct);
         }
 
         // -------------- helpers --------------
-        private async Task EnsureUserExists(int userId, CancellationToken ct)
+        private async Task EnsureUserExists(string userId, CancellationToken ct)
         {
             var exists = await _userRepo.UserExistsAsync(userId, ct);
             if (!exists) throw new KeyNotFoundException($"User {userId} not found.");
         }
 
-        private async Task<int> GetDepartmentId(int userId, CancellationToken ct)
+        private async Task<string> GetDepartmentId(string userId, CancellationToken ct)
         {
             return await _userRepo.GetDepartmentIdAsync(userId, ct);
         }
 
-        private async Task EnsureManagerCanSeeUser(int? managerDeptId, int targetUserId, CancellationToken ct)
+        private async Task EnsureManagerCanSeeUser(string? managerDeptId, string targetUserId, CancellationToken ct)
         {
-            if (!managerDeptId.HasValue) throw new UnauthorizedAccessException("Manager department scope missing.");
+            if (string.IsNullOrEmpty(managerDeptId)) throw new UnauthorizedAccessException("Manager department scope missing.");
             var userDepId = await _userRepo.GetDepartmentIdAsync(targetUserId, ct);
 
-            if (userDepId == 0 || userDepId != managerDeptId.Value)
+            if (string.IsNullOrEmpty(userDepId) || userDepId != managerDeptId)
                 throw new UnauthorizedAccessException("You are not allowed to view this user's data.");
         }
 

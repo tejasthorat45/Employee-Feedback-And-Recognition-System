@@ -65,6 +65,16 @@ export class AuthService {
     localStorage.setItem(this.USER_KEY, JSON.stringify(user));
   }
 
+  /** Update user's name (for profile updates) */
+  updateUserName(name: string): void {
+    const currentUser = this._user$.getValue();
+    if (currentUser) {
+      const updatedUser = { ...currentUser, name };
+      this._user$.next(updatedUser);
+      localStorage.setItem(this.USER_KEY, JSON.stringify(updatedUser));
+    }
+  }
+
   /** FIXED: Clears Local Storage on logout */
   logout(): void {
     this.tokenSvc.clearToken();
@@ -89,7 +99,7 @@ export class AuthService {
     const payload = this.tokenSvc.decodePayload<any>(token);
     const user: User | null = payload
       ? {
-        id: payload.nameid ?? payload.sub ?? payload.userId ?? 'unknown',
+        id: payload.userId ?? payload.nameid ?? payload.sub ?? 'unknown',  // Priority: explicit userId, then nameid, then sub
         name: payload.unique_name ?? payload.name ?? payload.fullName ?? '',
         email: payload.email ?? '',
         roles: this.extractRoles(payload),

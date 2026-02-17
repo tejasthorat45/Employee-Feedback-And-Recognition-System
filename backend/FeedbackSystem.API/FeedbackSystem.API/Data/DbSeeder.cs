@@ -36,15 +36,34 @@ public static class DbSeeder
         if (!await db.Departments.AnyAsync())
         {
             db.Departments.AddRange(
+<<<<<<< HEAD
                 new Department { DepartmentName = "Engineer", Description = "Engineering department", IsActive = true },
                 new Department { DepartmentName = "Engineering", Description = "Product engineering", IsActive = true },
                 new Department { DepartmentName = "HR", Description = "Human resources", IsActive = true },
                 new Department { DepartmentName = "Sales", Description = "Revenue team", IsActive = true },
                 new Department { DepartmentName = "General", Description = "Default department", IsActive = true }
+=======
+                new Department { DepartmentId = "dept001", DepartmentName = "Engineering", Description = "Product engineering", IsActive = true },
+                new Department { DepartmentId = "dept002", DepartmentName = "HR", Description = "Human resources", IsActive = true },
+                new Department { DepartmentId = "dept003", DepartmentName = "Sales", Description = "Revenue team", IsActive = true },
+                new Department { DepartmentId = "dept004", DepartmentName = "IT", Description = "Information Technology", IsActive = true },
+                new Department { DepartmentId = "dept005", DepartmentName = "General", Description = "Default department", IsActive = true }
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
             );
         }
 
-        // Save inserts for Roles, AppSettings, Departments (if any)
+        // ---------- BADGES (NEW) ----------
+        if (!await db.Badges.AnyAsync())
+        {
+            db.Badges.AddRange(
+                new Badge { BadgeId = "badge001", BadgeName = "Team Player", Description = "Collaboration excellence", IconClass = "🤝", IsActive = true },
+                new Badge { BadgeId = "badge002", BadgeName = "Problem Solver", Description = "Creative solutions", IconClass = "💡", IsActive = true },
+                new Badge { BadgeId = "badge003", BadgeName = "Leader", Description = "Leadership excellence", IconClass = "🚀", IsActive = true },
+                new Badge { BadgeId = "badge004", BadgeName = "Innovator", Description = "Innovation and creativity", IconClass = "✨", IsActive = true }
+            );
+        }
+
+        // Save inserts for Roles, AppSettings, Departments, Badges (if any)
         await db.SaveChangesAsync();
 
         // Get IDs we need for relationships
@@ -59,7 +78,7 @@ public static class DbSeeder
             .Select(d => d.DepartmentId)
             .FirstOrDefaultAsync();
 
-        if (defaultDeptId == 0)
+        if (string.IsNullOrEmpty(defaultDeptId))
         {
             defaultDeptId = await db.Departments
                 .Where(d => d.DepartmentName == "Engineering")
@@ -81,7 +100,12 @@ public static class DbSeeder
         {
             db.Users.Add(new User
             {
+<<<<<<< HEAD
                 FullName = "admin001",
+=======
+                UserId = "admin001",
+                FullName = "System Administrator",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
                 Email = "admin@local",
                 PasswordHash = PasswordHasher.Hash("Admin@123"),
                 RoleId = adminRoleId,
@@ -94,7 +118,7 @@ public static class DbSeeder
         else
         {
             // If DepartmentId was missing (e.g., older DB), backfill it safely
-            if (admin.DepartmentId == 0)
+            if (string.IsNullOrEmpty(admin.DepartmentId))
             {
                 admin.DepartmentId = defaultDeptId;
             }
@@ -113,6 +137,81 @@ public static class DbSeeder
             {
                 await db.SaveChangesAsync();
             }
+        }
+
+        // ---------- SAMPLE EMPLOYEES FOR TESTING ----------
+        var employeeRole = await db.Roles
+            .Where(r => r.RoleName == "Employee")
+            .FirstOrDefaultAsync();
+
+        var managerRole = await db.Roles
+            .Where(r => r.RoleName == "Manager")
+            .FirstOrDefaultAsync();
+
+        if (employeeRole != null && !await db.Users.AnyAsync(u => u.UserId == "emp001"))
+        {
+            var salesDept = await db.Departments.Where(d => d.DepartmentName == "Sales").Select(d => d.DepartmentId).FirstOrDefaultAsync() ?? defaultDeptId;
+            var hrDept = await db.Departments.Where(d => d.DepartmentName == "HR").Select(d => d.DepartmentId).FirstOrDefaultAsync() ?? defaultDeptId;
+            var itDept = await db.Departments.Where(d => d.DepartmentName == "IT").Select(d => d.DepartmentId).FirstOrDefaultAsync() ?? defaultDeptId;
+
+            db.Users.AddRange(
+                new User
+                {
+                    UserId = "emp001",
+                    FullName = "John Doe",
+                    Email = "john.doe@company.com",
+                    PasswordHash = PasswordHasher.Hash("Pass@123"),
+                    RoleId = employeeRole.RoleId,
+                    DepartmentId = defaultDeptId,
+                    IsActive = true,
+                    CreatedAt = DateTime.UtcNow
+                },
+                new User
+                {
+                    UserId = "emp002",
+                    FullName = "Jane Smith",
+                    Email = "jane.smith@company.com",
+                    PasswordHash = PasswordHasher.Hash("Pass@123"),
+                    RoleId = employeeRole.RoleId,
+                    DepartmentId = salesDept,
+                    IsActive = true,
+                    CreatedAt = DateTime.UtcNow
+                },
+                new User
+                {
+                    UserId = "emp003",
+                    FullName = "Robert Johnson",
+                    Email = "robert.johnson@company.com",
+                    PasswordHash = PasswordHasher.Hash("Pass@123"),
+                    RoleId = employeeRole.RoleId,
+                    DepartmentId = hrDept,
+                    IsActive = true,
+                    CreatedAt = DateTime.UtcNow
+                },
+                new User
+                {
+                    UserId = "mgr001",
+                    FullName = "Sarah Williams",
+                    Email = "sarah.williams@company.com",
+                    PasswordHash = PasswordHasher.Hash("Pass@123"),
+                    RoleId = managerRole?.RoleId ?? employeeRole.RoleId,
+                    DepartmentId = itDept,
+                    IsActive = true,
+                    CreatedAt = DateTime.UtcNow
+                },
+                new User
+                {
+                    UserId = "emp004",
+                    FullName = "Michael Brown",
+                    Email = "michael.brown@company.com",
+                    PasswordHash = PasswordHasher.Hash("Pass@123"),
+                    RoleId = employeeRole.RoleId,
+                    DepartmentId = defaultDeptId,
+                    IsActive = true,
+                    CreatedAt = DateTime.UtcNow
+                }
+            );
+            await db.SaveChangesAsync();
         }
     }
 }

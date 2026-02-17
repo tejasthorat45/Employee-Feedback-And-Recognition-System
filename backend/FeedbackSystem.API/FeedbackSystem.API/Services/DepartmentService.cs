@@ -22,7 +22,7 @@ public class DepartmentService : IDepartmentService
         )).ToList();
     }
 
-    public async Task<DepartmentReadDto?> GetByIdAsync(int id, CancellationToken ct = default)
+    public async Task<DepartmentReadDto?> GetByIdAsync(string id, CancellationToken ct = default)
     {
         var dept = await _repo.GetByIdAsync(id, ct);
         if (dept is null) return null;
@@ -43,6 +43,7 @@ public class DepartmentService : IDepartmentService
 
         var entity = new Department
         {
+            DepartmentId = dto.DepartmentId,
             DepartmentName = dto.DepartmentName,
             Description = dto.Description,
             IsActive = true,
@@ -60,7 +61,7 @@ public class DepartmentService : IDepartmentService
         );
     }
 
-    public async Task<bool> UpdateAsync(int id, DepartmentUpdateDto dto, CancellationToken ct = default)
+    public async Task<bool> UpdateAsync(string id, DepartmentUpdateDto dto, CancellationToken ct = default)
     {
         var dept = await _repo.GetByIdAsync(id, ct);
         if (dept is null) return false;
@@ -76,10 +77,14 @@ public class DepartmentService : IDepartmentService
         return true;
     }
 
-    public async Task<bool> DeleteAsync(int id, CancellationToken ct = default)
+    public async Task<bool> DeleteAsync(string id, CancellationToken ct = default)
     {
         var dept = await _repo.GetByIdAsync(id, ct);
         if (dept is null) return false;
+
+        // Check if department has users
+        if (dept.Users != null && dept.Users.Any())
+            throw new InvalidOperationException("Cannot delete department with existing users. Please reassign or remove users first.");
 
         await _repo.DeleteAsync(dept, ct);
         return true;

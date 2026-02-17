@@ -12,16 +12,70 @@
   </div>
 
   <div class="d-flex align-items-center gap-3">
-    <a 
-      routerLink="/manager/notifications" 
-      routerLinkActive="active-link"
-      class="notification-box position-relative cursor-pointer text-decoration-none"
-    >
-      <i class="bi bi-bell fs-5 text-secondary"></i>
-      <span *ngIf="notificationCount > 0" class="badge-notify">
-        {{ notificationCount }}
-      </span>
-    </a>
+    <!-- Notification Popup Container -->
+    <div class="notification-container position-relative">
+      <div 
+        (click)="toggleNotifications()"
+        class="notification-box position-relative cursor-pointer">
+        <i class="bi bi-bell fs-5 text-secondary"></i>
+        <span *ngIf="notificationCount > 0" class="badge-notify">
+          {{ notificationCount }}
+        </span>
+      </div>
+
+      <!-- Notification Popup -->
+      <div *ngIf="isNotificationOpen" class="notification-popup shadow-lg border rounded-lg">
+        <div class="popup-header d-flex justify-content-between align-items-center p-3 border-bottom bg-light">
+          <span class="fw-bold text-dark">Notifications</span>
+          <button 
+            *ngIf="notificationCount > 0"
+            (click)="markAllAsRead(); $event.stopPropagation()"
+            class="btn btn-sm btn-link text-primary p-0">
+            Mark all read
+          </button>
+        </div>
+
+        <div class="notification-list">
+          <!-- Loading State -->
+          <div *ngIf="isLoadingNotifications" class="p-4 text-center">
+            <div class="spinner-border spinner-border-sm text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+
+          <!-- Empty State -->
+          <div *ngIf="!isLoadingNotifications && notifications.length === 0" class="p-4 text-center text-muted">
+            <i class="bi bi-bell-slash fs-3 d-block mb-2"></i>
+            <small>No notifications</small>
+          </div>
+
+          <!-- Notification Items -->
+          <div 
+            *ngFor="let notification of notifications"
+            (click)="markAsRead(notification)"
+            class="notification-item p-3 border-bottom cursor-pointer"
+            [class.unread]="!notification.isRead">
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="flex-grow-1 me-2">
+                <p class="mb-1 fw-semibold small" [class.fw-bold]="!notification.isRead">
+                  {{ notification.title }}
+                </p>
+                <p class="mb-0 text-muted small text-truncate" style="max-width: 200px;">
+                  {{ notification.message }}
+                </p>
+              </div>
+              <small class="text-muted flex-shrink-0">{{ getTimeAgo(notification.createdAt) }}</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-2 border-top text-center">
+          <a routerLink="/manager/notifications" (click)="isNotificationOpen = false" class="btn btn-sm btn-link text-primary">
+            View all notifications
+          </a>
+        </div>
+      </div>
+    </div>
 
     <div class="profile-container position-relative">
       <div (click)="toggleProfile()" class="profile-icon">

@@ -21,3 +21,16 @@
   font-weight: 500;
   border-radius: 8px;
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.list-group-item-action:hover {
+  background-color: #f8f9fa;
+  cursor: pointer;
+}
+
+.z-3 {
+  z-index: 1030;
+}

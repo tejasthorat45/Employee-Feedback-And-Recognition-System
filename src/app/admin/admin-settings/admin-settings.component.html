@@ -1,4 +1,243 @@
-<p>admin-settings works!</p>
+<!-- Loading skeleton -->
+<div class="settings-container" *ngIf="loading()">
+  <header class="header">
+    <div class="title-wrap">
+      <div class="title-icon">
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M19.14 12.94a7.07 7.07 0 000-1.88l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.49.49 0 00-.59-.22l-2.39.96a7.04 7.04 0 00-1.62-.94l-.36-2.54a.48.48 0 00-.48-.41h-3.84a.48.48 0 00-.48.41l-.36 2.54a7.04 7.04 0 00-1.62.94l-2.39-.96a.49.49 0 00-.59.22L2.74 8.87a.48.48 0 00.12.61l2.03 1.58a7.07 7.07 0 000 1.88l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32a.49.49 0 00.59.22l2.39-.96c.5.37 1.04.69 1.62.94l.36 2.54a.48.48 0 00.48.41h3.84a.48.48 0 00.48-.41l.36-2.54a7.04 7.04 0 001.62-.94l2.39.96a.49.49 0 00.59-.22l1.92-3.32a.49.49 0 00-.12-.61l-2.03-1.58zM12 15.6A3.6 3.6 0 1115.6 12 3.6 3.6 0 0112 15.6z"/></svg>
+      </div>
+      <div>
+        <h2 class="page-title">Settings</h2>
+        <p class="page-subtitle">Loading your preferences…</p>
+      </div>
+    </div>
+  </header>
+  <div class="skeleton-container">
+    <div class="skeleton-card"></div>
+    <div class="skeleton-card"></div>
+    <div class="skeleton-card"></div>
+    <div class="skeleton-card"></div>
+  </div>
+</div>
 
+<!-- Main settings form -->
+<form class="settings-container" [formGroup]="settingsForm" *ngIf="!loading()">
 
-<button style="color:brown" (click)="logout()">Logout</button>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="title-wrap">
+      <div class="title-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M19.14 12.94a7.07 7.07 0 000-1.88l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.49.49 0 00-.59-.22l-2.39.96a7.04 7.04 0 00-1.62-.94l-.36-2.54a.48.48 0 00-.48-.41h-3.84a.48.48 0 00-.48.41l-.36 2.54a7.04 7.04 0 00-1.62.94l-2.39-.96a.49.49 0 00-.59.22L2.74 8.87a.48.48 0 00.12.61l2.03 1.58a7.07 7.07 0 000 1.88l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32a.49.49 0 00.59.22l2.39-.96c.5.37 1.04.69 1.62.94l.36 2.54a.48.48 0 00.48.41h3.84a.48.48 0 00.48-.41l.36-2.54a7.04 7.04 0 001.62-.94l2.39.96a.49.49 0 00.59-.22l1.92-3.32a.49.49 0 00-.12-.61l-2.03-1.58zM12 15.6A3.6 3.6 0 1115.6 12 3.6 3.6 0 0112 15.6z"/></svg>
+      </div>
+      <div>
+        <h2 class="page-title">Global Settings</h2>
+        <p class="page-subtitle">Configure your feedback system preferences</p>
+      </div>
+    </div>
+
+    <div class="actions">
+      <div class="save-status" [class.visible]="!settingsForm.dirty && !saving()">
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+        Saved
+      </div>
+
+      <button type="button" class="btn ghost" (click)="toggleTheme()" title="Toggle theme">
+        <svg *ngIf="!isDark" viewBox="0 0 24 24"><path fill="currentColor" d="M12 7a5 5 0 100 10 5 5 0 000-10zm0-4a1 1 0 011 1v1a1 1 0 01-2 0V4a1 1 0 011-1zm0 17a1 1 0 011 1v1a1 1 0 01-2 0v-1a1 1 0 011-1zm9-9a1 1 0 010 2h-1a1 1 0 010-2h1zM4 11a1 1 0 010 2H3a1 1 0 010-2h1zm14.36-5.64a1 1 0 010 1.41l-.7.71a1 1 0 01-1.42-1.42l.71-.7a1 1 0 011.41 0zM7.05 16.95a1 1 0 010 1.41l-.7.71a1 1 0 01-1.42-1.42l.71-.7a1 1 0 011.41 0zm10.61.71a1 1 0 01-1.41 0l-.71-.71a1 1 0 011.42-1.41l.7.7a1 1 0 010 1.42zM7.76 6.34a1 1 0 01-1.42 1.42l-.7-.71a1 1 0 011.41-1.41l.71.7z"/></svg>
+        <svg *ngIf="isDark" viewBox="0 0 24 24"><path fill="currentColor" d="M9.37 5.51A7 7 0 0018.49 14.63 8 8 0 119.37 5.51z"/></svg>
+        {{ isDark ? 'Dark' : 'Light' }}
+      </button>
+
+      <button type="button"
+              class="btn primary"
+              [disabled]="!settingsForm.valid || !settingsForm.dirty || saving()"
+              (click)="saveSettings()">
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M17 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V7l-4-4zm-5 16a3 3 0 110-6 3 3 0 010 6zm3-10H5V5h10v4z"/></svg>
+        {{ saving() ? 'Saving…' : 'Save Changes' }}
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══════════ 1. FEEDBACK SETTINGS ═══════════ -->
+  <details class="card" formGroupName="feedbackSettings" open>
+    <summary>
+      <span class="summary-icon feedback" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20 2H4a2 2 0 00-2 2v18l4-4h14a2 2 0 002-2V4a2 2 0 00-2-2z"/></svg>
+      </span>
+      Feedback Settings
+      <svg class="chevron" viewBox="0 0 24 24"><path fill="currentColor" d="M7 10l5 5 5-5z"/></svg>
+    </summary>
+
+    <div class="card-content">
+      <!-- Anonymous Feedback -->
+      <div class="setting-row">
+        <div class="setting-info">
+          <p class="setting-label">Anonymous Feedback</p>
+          <p class="setting-desc">Allow employees to submit feedback without revealing their identity</p>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" formControlName="allowAnonymousFeedback">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+
+      <!-- Min Length -->
+      <div class="setting-row">
+        <div class="setting-info">
+          <p class="setting-label">Minimum Feedback Length</p>
+          <p class="setting-desc">Set minimum number of characters required for feedback submissions</p>
+        </div>
+        <div class="slider-control">
+          <input class="range-slider" type="range" min="1" max="500" step="1" formControlName="minimumFeedbackLength">
+          <span class="range-value">{{ fFb.get('minimumFeedbackLength')?.value }} chars</span>
+        </div>
+      </div>
+
+      <!-- Require Category -->
+      <div class="setting-row">
+        <div class="setting-info">
+          <p class="setting-label">Require Category Selection</p>
+          <p class="setting-desc">Force users to select a category when submitting feedback</p>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" formControlName="requireCategorySelection">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+    </div>
+  </details>
+
+  <!-- ═══════════ 2. RECOGNITION SETTINGS ═══════════ -->
+  <details class="card" formGroupName="recognitionSettings">
+    <summary>
+      <span class="summary-icon recognition" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </span>
+      Recognition Settings
+      <svg class="chevron" viewBox="0 0 24 24"><path fill="currentColor" d="M7 10l5 5 5-5z"/></svg>
+    </summary>
+
+    <div class="card-content">
+      <!-- Max Points -->
+      <div class="setting-row">
+        <div class="setting-info">
+          <p class="setting-label">Max Points Per Recognition</p>
+          <p class="setting-desc">Maximum points a user can give in a single recognition</p>
+        </div>
+        <div class="slider-control">
+          <input class="range-slider" type="range" min="1" max="100" step="1" formControlName="maxPointsPerRecognition">
+          <span class="range-value">{{ fRec.get('maxPointsPerRecognition')?.value }} pts</span>
+        </div>
+      </div>
+
+      <!-- Monthly Budget -->
+      <div class="setting-row">
+        <div class="setting-info">
+          <p class="setting-label">Monthly Points Budget</p>
+          <p class="setting-desc">Total points each employee can give per month</p>
+        </div>
+        <div class="slider-control">
+          <input class="range-slider" type="range" min="10" max="1000" step="10" formControlName="monthlyPointsBudgetPerEmployee">
+          <span class="range-value">{{ fRec.get('monthlyPointsBudgetPerEmployee')?.value }} pts</span>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ═══════════ 3. NOTIFICATION SETTINGS ═══════════ -->
+  <details class="card" formGroupName="notificationSettings">
+    <summary>
+      <span class="summary-icon notification" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 22a2 2 0 002-2H10a2 2 0 002 2zm6-6V11a6 6 0 10-12 0v5L4 18v2h16v-2l-2-2z"/></svg>
+      </span>
+      Notification Settings
+      <svg class="chevron" viewBox="0 0 24 24"><path fill="currentColor" d="M7 10l5 5 5-5z"/></svg>
+    </summary>
+
+    <div class="card-content">
+      <!-- Email Notifications -->
+      <div class="setting-row">
+        <div class="setting-info">
+          <p class="setting-label">Email Notifications</p>
+          <p class="setting-desc">Enable or disable all email notifications system-wide</p>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" formControlName="enableEmailNotifications">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+
+      <!-- Feedback Received -->
+      <div class="setting-row">
+        <div class="setting-info">
+          <p class="setting-label">Feedback Received Notification</p>
+          <p class="setting-desc">Notify users when they receive new feedback</p>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" formControlName="notifyOnFeedbackReceived">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+
+      <!-- Recognition Received -->
+      <div class="setting-row">
+        <div class="setting-info">
+          <p class="setting-label">Recognition Received Notification</p>
+          <p class="setting-desc">Notify users when they receive a recognition</p>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" formControlName="notifyOnRecognitionReceived">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+    </div>
+  </details>
+
+  <!-- ═══════════ 4. USER SETTINGS ═══════════ -->
+  <details class="card" formGroupName="userSettings">
+    <summary>
+      <span class="summary-icon users" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 3-1.34 3-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V20h14v-3.5C15 14.17 10.33 13 8 13zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.96 1.97 3.45V20h6v-3.5C23 14.17 18.33 13 16 13z"/></svg>
+      </span>
+      User & Access Settings
+      <svg class="chevron" viewBox="0 0 24 24"><path fill="currentColor" d="M7 10l5 5 5-5z"/></svg>
+    </summary>
+
+    <div class="card-content">
+      <!-- Public Registration -->
+      <div class="setting-row">
+        <div class="setting-info">
+          <p class="setting-label">Public Employee Registration</p>
+          <p class="setting-desc">Allow new employees to self-register through the public registration page</p>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" formControlName="allowPublicEmployeeRegistration">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+
+      <!-- Session Timeout -->
+      <div class="setting-row">
+        <div class="setting-info">
+          <p class="setting-label">Session Timeout</p>
+          <p class="setting-desc">Automatically log out inactive users after this duration</p>
+        </div>
+        <div class="slider-control">
+          <input class="range-slider" type="range" min="5" max="480" step="5" formControlName="sessionTimeout">
+          <span class="range-value">{{ fUsr.get('sessionTimeout')?.value }} min</span>
+        </div>
+      </div>
+    </div>
+  </details>
+
+</form>
+
+<!-- Toast notifications -->
+<div class="toast-container">
+  <div class="toast success" *ngIf="showSaveToast">
+    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+    Settings saved successfully!
+  </div>
+  <div class="toast error" *ngIf="showErrorToast">
+    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/></svg>
+    Failed to save. Please try again.
+  </div>
+</div>

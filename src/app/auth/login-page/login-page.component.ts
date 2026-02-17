@@ -36,13 +36,18 @@ export class LoginPageComponent implements OnInit {
       this.role = params.get('role') ?? undefined;
     });
   }
+  
 
   get f() { return this.form.controls; }
 
   onLogin() {
+
+    debugger;
     if (this.form.invalid) {
       this.form.markAllAsTouched();
+      
       return;
+      
     }
 
     this.loading = true;

@@ -1,0 +1,71 @@
+@FeedbackSystem.API_HostAddress = http://localhost:5001
+@token = YOUR_JWT_TOKEN_HERE
+
+### 1. Login as Admin to get token
+POST {{FeedbackSystem.API_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@local",
+  "password": "Admin@123"
+}
+
+### 2. GET Settings (All authenticated users)
+GET {{FeedbackSystem.API_HostAddress}}/api/settings
+Authorization: Bearer {{token}}
+
+### 3. PUT Settings (Admin only)
+PUT {{FeedbackSystem.API_HostAddress}}/api/settings
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "feedbackSettings": {
+    "allowAnonymousFeedback": true,
+    "minimumFeedbackLength": 30,
+    "requireCategorySelection": false
+  },
+  "recognitionSettings": {
+    "maxPointsPerRecognition": 15,
+    "monthlyPointsBudgetPerEmployee": 150
+  },
+  "notificationSettings": {
+    "enableEmailNotifications": false,
+    "notifyOnFeedbackReceived": true,
+    "notifyOnRecognitionReceived": true
+  },
+  "userSettings": {
+    "allowPublicEmployeeRegistration": true,
+    "sessionTimeout": 60
+  }
+}
+
+### 4. GET Settings again to verify changes
+GET {{FeedbackSystem.API_HostAddress}}/api/settings
+Authorization: Bearer {{token}}
+
+### 5. Reset Settings to defaults
+PUT {{FeedbackSystem.API_HostAddress}}/api/settings
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "feedbackSettings": {
+    "allowAnonymousFeedback": false,
+    "minimumFeedbackLength": 20,
+    "requireCategorySelection": true
+  },
+  "recognitionSettings": {
+    "maxPointsPerRecognition": 10,
+    "monthlyPointsBudgetPerEmployee": 100
+  },
+  "notificationSettings": {
+    "enableEmailNotifications": true,
+    "notifyOnFeedbackReceived": true,
+    "notifyOnRecognitionReceived": true
+  },
+  "userSettings": {
+    "allowPublicEmployeeRegistration": false,
+    "sessionTimeout": 30
+  }
+}

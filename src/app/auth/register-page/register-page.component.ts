@@ -10,6 +10,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RegisterService } from '../service/register.service';
+import { AdminDepartmentService, DepartmentReadDto } from '../../admin/services/admin-dapartment.service';
 
 @Component({
   selector: 'app-register-page',
@@ -21,17 +22,9 @@ import { RegisterService } from '../service/register.service';
 export class RegisterPageComponent implements OnInit {
   form!: FormGroup;
   loading = false;
+  loadingDepartments = false;
 
-  departments: string[] = [
-    'Engineering',
-    'Human Resources',
-    'Finance',
-    'Operations',
-    'Sales',
-    'Marketing',
-    'IT Support',
-    'Product',
-  ];
+  departments: DepartmentReadDto[] = [];
 
   userIdPattern = /^[a-z]{3}[0-9]{4}$/;
   passwordPattern =
@@ -41,6 +34,7 @@ export class RegisterPageComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private registerService: RegisterService,
+    private departmentService: AdminDepartmentService,
   ) {}
 
   ngOnInit(): void {
@@ -70,6 +64,25 @@ export class RegisterPageComponent implements OnInit {
       },
       { validators: this.passwordsMatchValidator },
     );
+
+    // Load departments from API
+    this.loadDepartments();
+  }
+
+  loadDepartments(): void {
+    this.loadingDepartments = true;
+    this.departmentService.getAll().subscribe({
+      next: (data) => {
+        this.departments = data.filter(dept => dept.isActive);
+        this.loadingDepartments = false;
+      },
+      error: (err) => {
+        console.error('Failed to load departments:', err);
+        this.loadingDepartments = false;
+        // Fallback to empty array
+        this.departments = [];
+      }
+    });
   }
 
   private passwordsMatchValidator(
@@ -95,9 +108,9 @@ export class RegisterPageComponent implements OnInit {
 
     const payload = {
       userId: this.form.getRawValue().userId,
-      fullName: this.form.getRawValue().name, // adjust if backend expects 'FullName'
+      fullName: this.form.getRawValue().name,
       email: this.form.getRawValue().email,
-      department: this.form.getRawValue().department, // change to departmentId if API expects number
+      departmentId: this.form.getRawValue().department,
       password: this.form.getRawValue().password,
     };
 

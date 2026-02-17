@@ -1,7 +1,7 @@
 <div class="home-container">
-  <nav class="glass-header">
-    <div class="nav-logo"></div>
-    <div class="nav-actions">
+  <nav class="glass-header" >
+    <div class="nav-logo">Feedback Track</div>
+    <div class="nav-actions" *ngIf="showNavButtons">
       <ng-container *ngIf="!(isLoggedIn$ | async); else loggedInButtons">
         <button class="nav-btn login-btn" (click)="scrollToRoles()">Login</button>
         <button class="nav-btn register-btn" [routerLink]="['/auth/register-page']">Register</button>
@@ -30,47 +30,65 @@
     </div>
   </header>
 
-  <section id="about-anchor" class="about-section" style="height: 100vh;">
-    <div class="about-content">
-      <div class="about-text">
+  <section id="about-anchor" class="about-section">
+    <div class="section-container">
+      <div class="about-header">
         <span class="text-accent">Empowering Every Voice</span>
-        <h2>Cultivating Excellence Through <span class="highlight">Transparent Insights</span></h2>
-        <p><strong>Feedback Track</strong> is a sophisticated ecosystem designed to transform organizational culture.</p>
-        <p>Our mission is to foster an environment of <strong>continuous growth</strong> and appreciation.</p>
+        <h2>Cultivating Excellence Through <span class="highlight">Insights</span></h2>
+        <p class="section-subtitle">Feedback Track is a sophisticated ecosystem designed to transform organizational culture.</p>
       </div>
-      <div class="about-stats">
-        <div class="stat-item">
-          <span class="stat-val">Real-time</span>
-          <span class="stat-label">Analytics</span>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="card-icon">🚀</div>
+          <h3>Rapid Recognition</h3>
+          <p>Instant peer-to-peer appreciation to keep the team's morale at its peak every single day.</p>
         </div>
-        <div class="stat-item">
-          <span class="stat-val">360°</span>
-          <span class="stat-label">Recognition</span>
+
+        <div class="feature-card highlighted-card">
+          <div class="card-icon">📊</div>
+          <h3>Smart Analytics</h3>
+          <p>Data-driven insights that help managers understand team dynamics and identify top talent effortlessly.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="card-icon">🛡️</div>
+          <h3>Safe & Transparent</h3>
+          <p>A secure platform where every voice matters, ensuring honest feedback in a professional environment.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="roles-anchor" class="roles-section" style="height: 100vh;">
+  <section id="roles-anchor" class="roles-section">
     <div class="section-header">
-      <h2>Select Your Portal For Feedback</h2>
-      <p>Please choose your specialized role to begin your journey.</p>
+      <h2 class="roles-title">Select Your Portal For Feedback</h2>
+      <p class="roles-subtitle">Please choose your specialized role to begin your journey.</p>
     </div>
+    
     <div class="cards-grid">
-      <a class="glass-card" [routerLink]="['/auth/login-page']" [queryParams]="{role: 'admin'}" style="cursor: pointer;">
-        <div class="icon-box"><img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Admin"></div>
-        <h3>Administrator</h3>
-        <span class="portal-link">Access Portal →</span>
+      <a class="glass-card" [routerLink]="['/auth/login-page']" [queryParams]="{role: 'admin'}">
+        <div class="icon-box">
+          <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Admin">
+        </div>
+        <h3>Admin</h3>
+        <span class="portal-link">ACCESS PORTAL</span>
       </a>
-      <a class="glass-card" [routerLink]="['/auth/login-page']" [queryParams]="{role: 'manager'}" style="cursor: pointer;">
-        <div class="icon-box"><img src="https://cdn-icons-png.flaticon.com/512/912/912318.png" alt="Manager"></div>
+
+      <a class="glass-card" [routerLink]="['/auth/login-page']" [queryParams]="{role: 'manager'}">
+        <div class="icon-box">
+          <img src="https://cdn-icons-png.flaticon.com/512/912/912318.png" alt="Manager">
+        </div>
         <h3>Manager</h3>
-        <span class="portal-link">Access Portal →</span>
+        <span class="portal-link">ACCESS PORTAL</span>
       </a>
-      <a class="glass-card" [routerLink]="['/auth/login-page']" [queryParams]="{role: 'employee'}" style="cursor: pointer;">
-        <div class="icon-box"><img src="https://cdn-icons-png.flaticon.com/512/1256/1256650.png" alt="Employee"></div>
+
+      <a class="glass-card" [routerLink]="['/auth/login-page']" [queryParams]="{role: 'employee'}">
+        <div class="icon-box">
+          <img src="https://cdn-icons-png.flaticon.com/512/1256/1256650.png" alt="Employee">
+        </div>
         <h3>Employee</h3>
-        <span class="portal-link">Access Portal →</span>
+        <span class="portal-link">ACCESS PORTAL</span>
       </a>
     </div>
   </section>

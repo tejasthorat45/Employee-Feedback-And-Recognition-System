@@ -2,18 +2,19 @@
 {
     public class User
     {
-        public int UserId { get; set; }
+        public string UserId { get; set; } = null!;
 
         public string FullName { get; set; } = null!;
         public string Email { get; set; } = null!;
         public string PasswordHash { get; set; } = null!;
+        public string? Phone { get; set; }
 
         public int RoleId { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedAt { get; set; }
 
         // ✅ New: FK to Department
-        public int DepartmentId { get; set; }
+        public string DepartmentId { get; set; } = null!;
 
         // Navigations
         public Role Role { get; set; } = null!;

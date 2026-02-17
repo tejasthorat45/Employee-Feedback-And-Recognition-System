@@ -7,7 +7,7 @@ export interface PublicRegisterDto {
   userId: string;
   fullName: string;
   email: string;
-  department: string; // change to departmentId: number if backend expects numeric FK
+  departmentId: string; // Maps to departmentId (string) in backend
   password: string;
 }
 

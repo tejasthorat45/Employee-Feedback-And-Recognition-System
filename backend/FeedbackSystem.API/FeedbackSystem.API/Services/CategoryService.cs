@@ -25,7 +25,7 @@ public class CategoryService : ICategoryService
         )).ToList();
     }
 
-    public async Task<CategoryReadDto?> GetByIdAsync(int id, CancellationToken ct = default)
+    public async Task<CategoryReadDto?> GetByIdAsync(string id, CancellationToken ct = default)
     {
         var entity = await _repo.GetByIdAsync(id, ct);
         if (entity is null) return null;
@@ -46,6 +46,7 @@ public class CategoryService : ICategoryService
 
         var entity = new Category
         {
+            CategoryId = dto.CategoryId,
             CategoryName = dto.CategoryName,
             Description = dto.Description,
             IsActive = true,
@@ -63,7 +64,7 @@ public class CategoryService : ICategoryService
         );
     }
 
-    public async Task<bool> UpdateAsync(int id, CategoryUpdateDto dto, CancellationToken ct = default)
+    public async Task<bool> UpdateAsync(string id, CategoryUpdateDto dto, CancellationToken ct = default)
     {
         var existing = await _repo.GetByIdAsync(id, ct);
         if (existing is null) return false;
@@ -76,7 +77,7 @@ public class CategoryService : ICategoryService
         return true;
     }
 
-    public async Task<bool> DeleteAsync(int id, CancellationToken ct = default)
+    public async Task<bool> DeleteAsync(string id, CancellationToken ct = default)
     {
         var existing = await _repo.GetByIdAsync(id, ct);
         if (existing is null) return false;

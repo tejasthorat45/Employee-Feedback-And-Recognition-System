@@ -54,8 +54,12 @@
             "in": "path",
             "required": true,
             "schema": {
+<<<<<<< HEAD
               "type": "integer",
               "format": "int32"
+=======
+              "type": "string"
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
             }
           },
           {
@@ -78,8 +82,12 @@
             "name": "categoryId",
             "in": "query",
             "schema": {
+<<<<<<< HEAD
               "type": "integer",
               "format": "int32"
+=======
+              "type": "string"
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
             }
           },
           {
@@ -143,8 +151,12 @@
             "in": "path",
             "required": true,
             "schema": {
+<<<<<<< HEAD
               "type": "integer",
               "format": "int32"
+=======
+              "type": "string"
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
             }
           },
           {
@@ -167,8 +179,12 @@
             "name": "categoryId",
             "in": "query",
             "schema": {
+<<<<<<< HEAD
               "type": "integer",
               "format": "int32"
+=======
+              "type": "string"
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
             }
           },
           {
@@ -232,8 +248,12 @@
             "in": "path",
             "required": true,
             "schema": {
+<<<<<<< HEAD
               "type": "integer",
               "format": "int32"
+=======
+              "type": "string"
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
             }
           },
           {
@@ -313,8 +333,12 @@
             "in": "path",
             "required": true,
             "schema": {
+<<<<<<< HEAD
               "type": "integer",
               "format": "int32"
+=======
+              "type": "string"
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
             }
           },
           {
@@ -394,8 +418,12 @@
             "in": "path",
             "required": true,
             "schema": {
+<<<<<<< HEAD
               "type": "integer",
               "format": "int32"
+=======
+              "type": "string"
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
             }
           }
         ],
@@ -449,8 +477,12 @@
             "name": "categoryId",
             "in": "query",
             "schema": {
+<<<<<<< HEAD
               "type": "integer",
               "format": "int32"
+=======
+              "type": "string"
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
             }
           },
           {
@@ -464,24 +496,36 @@
             "name": "departmentId",
             "in": "query",
             "schema": {
+<<<<<<< HEAD
               "type": "integer",
               "format": "int32"
+=======
+              "type": "string"
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
             }
           },
           {
             "name": "fromUserId",
             "in": "query",
             "schema": {
+<<<<<<< HEAD
               "type": "integer",
               "format": "int32"
+=======
+              "type": "string"
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
             }
           },
           {
             "name": "toUserId",
             "in": "query",
             "schema": {
+<<<<<<< HEAD
               "type": "integer",
               "format": "int32"
+=======
+              "type": "string"
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
             }
           },
           {
@@ -560,24 +604,36 @@
             "name": "departmentId",
             "in": "query",
             "schema": {
+<<<<<<< HEAD
               "type": "integer",
               "format": "int32"
+=======
+              "type": "string"
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
             }
           },
           {
             "name": "fromUserId",
             "in": "query",
             "schema": {
+<<<<<<< HEAD
               "type": "integer",
               "format": "int32"
+=======
+              "type": "string"
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
             }
           },
           {
             "name": "toUserId",
             "in": "query",
             "schema": {
+<<<<<<< HEAD
               "type": "integer",
               "format": "int32"
+=======
+              "type": "string"
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
             }
           },
           {
@@ -649,8 +705,12 @@
             "name": "categoryId",
             "in": "query",
             "schema": {
+<<<<<<< HEAD
               "type": "integer",
               "format": "int32"
+=======
+              "type": "string"
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
             }
           },
           {
@@ -664,24 +724,36 @@
             "name": "departmentId",
             "in": "query",
             "schema": {
+<<<<<<< HEAD
               "type": "integer",
               "format": "int32"
+=======
+              "type": "string"
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
             }
           },
           {
             "name": "fromUserId",
             "in": "query",
             "schema": {
+<<<<<<< HEAD
               "type": "integer",
               "format": "int32"
+=======
+              "type": "string"
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
             }
           },
           {
             "name": "toUserId",
             "in": "query",
             "schema": {
+<<<<<<< HEAD
               "type": "integer",
               "format": "int32"
+=======
+              "type": "string"
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
             }
           }
         ],
@@ -742,24 +814,36 @@
             "name": "departmentId",
             "in": "query",
             "schema": {
+<<<<<<< HEAD
               "type": "integer",
               "format": "int32"
+=======
+              "type": "string"
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
             }
           },
           {
             "name": "fromUserId",
             "in": "query",
             "schema": {
+<<<<<<< HEAD
               "type": "integer",
               "format": "int32"
+=======
+              "type": "string"
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
             }
           },
           {
             "name": "toUserId",
             "in": "query",
             "schema": {
+<<<<<<< HEAD
               "type": "integer",
               "format": "int32"
+=======
+              "type": "string"
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
             }
           }
         ],
@@ -1102,8 +1186,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
             }
           }
         ],
@@ -1140,8 +1223,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
             }
           }
         ],
@@ -1180,8 +1262,189 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Departments": {
+      "get": {
+        "tags": [
+          "Departments"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DepartmentReadDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DepartmentReadDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DepartmentReadDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Departments"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DepartmentCreateDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DepartmentCreateDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DepartmentCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DepartmentReadDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DepartmentReadDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DepartmentReadDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Departments/{id}": {
+      "get": {
+        "tags": [
+          "Departments"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DepartmentReadDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DepartmentReadDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DepartmentReadDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Departments"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DepartmentUpdateDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DepartmentUpdateDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DepartmentUpdateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Departments"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -1472,8 +1735,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
             }
           }
         ],
@@ -1510,8 +1772,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
             }
           }
         ],
@@ -1550,8 +1811,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
             }
           }
         ],
@@ -1637,8 +1897,8 @@
         "type": "object",
         "properties": {
           "userId": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "fullName": {
             "type": "string",
@@ -1653,8 +1913,13 @@
             "nullable": true
           },
           "departmentId": {
+<<<<<<< HEAD
             "type": "integer",
             "format": "int32"
+=======
+            "type": "string",
+            "nullable": true
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
           },
           "departmentName": {
             "type": "string",
@@ -1673,6 +1938,10 @@
       "CategoryCreateDto": {
         "type": "object",
         "properties": {
+          "categoryId": {
+            "type": "string",
+            "nullable": true
+          },
           "categoryName": {
             "type": "string",
             "nullable": true
@@ -1688,8 +1957,8 @@
         "type": "object",
         "properties": {
           "categoryId": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "categoryName": {
             "type": "string",
@@ -1713,8 +1982,13 @@
         "type": "object",
         "properties": {
           "categoryId": {
+<<<<<<< HEAD
             "type": "integer",
             "format": "int32"
+=======
+            "type": "string",
+            "nullable": true
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
           },
           "categoryName": {
             "type": "string",
@@ -1762,6 +2036,13 @@
       "DepartmentCreateDto": {
         "type": "object",
         "properties": {
+<<<<<<< HEAD
+=======
+          "departmentId": {
+            "type": "string",
+            "nullable": true
+          },
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
           "departmentName": {
             "type": "string",
             "nullable": true
@@ -1777,8 +2058,13 @@
         "type": "object",
         "properties": {
           "departmentId": {
+<<<<<<< HEAD
             "type": "integer",
             "format": "int32"
+=======
+            "type": "string",
+            "nullable": true
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
           },
           "departmentName": {
             "type": "string",
@@ -1823,24 +2109,39 @@
             "format": "int32"
           },
           "fromUserId": {
+<<<<<<< HEAD
             "type": "integer",
             "format": "int32"
+=======
+            "type": "string",
+            "nullable": true
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
           },
           "fromUserName": {
             "type": "string",
             "nullable": true
           },
           "toUserId": {
+<<<<<<< HEAD
             "type": "integer",
             "format": "int32"
+=======
+            "type": "string",
+            "nullable": true
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
           },
           "toUserName": {
             "type": "string",
             "nullable": true
           },
           "categoryId": {
+<<<<<<< HEAD
             "type": "integer",
             "format": "int32"
+=======
+            "type": "string",
+            "nullable": true
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
           },
           "categoryName": {
             "type": "string",
@@ -1902,6 +2203,13 @@
       "PublicRegisterDto": {
         "type": "object",
         "properties": {
+<<<<<<< HEAD
+=======
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
           "fullName": {
             "type": "string",
             "nullable": true
@@ -1915,8 +2223,13 @@
             "nullable": true
           },
           "departmentId": {
+<<<<<<< HEAD
             "type": "integer",
             "format": "int32"
+=======
+            "type": "string",
+            "nullable": true
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
           }
         },
         "additionalProperties": false
@@ -1925,8 +2238,13 @@
         "type": "object",
         "properties": {
           "categoryId": {
+<<<<<<< HEAD
             "type": "integer",
             "format": "int32"
+=======
+            "type": "string",
+            "nullable": true
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
           },
           "categoryName": {
             "type": "string",
@@ -1952,24 +2270,39 @@
             "format": "int32"
           },
           "fromUserId": {
+<<<<<<< HEAD
             "type": "integer",
             "format": "int32"
+=======
+            "type": "string",
+            "nullable": true
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
           },
           "fromUserName": {
             "type": "string",
             "nullable": true
           },
           "toUserId": {
+<<<<<<< HEAD
             "type": "integer",
             "format": "int32"
+=======
+            "type": "string",
+            "nullable": true
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
           },
           "toUserName": {
             "type": "string",
             "nullable": true
           },
           "categoryId": {
+<<<<<<< HEAD
             "type": "integer",
             "format": "int32"
+=======
+            "type": "string",
+            "nullable": true
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
           },
           "categoryName": {
             "type": "string",
@@ -2018,6 +2351,10 @@
       "RegisterUserDto": {
         "type": "object",
         "properties": {
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
           "fullName": {
             "type": "string",
             "nullable": true
@@ -2035,8 +2372,13 @@
             "nullable": true
           },
           "departmentId": {
+<<<<<<< HEAD
             "type": "integer",
             "format": "int32"
+=======
+            "type": "string",
+            "nullable": true
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
           }
         },
         "additionalProperties": false
@@ -2044,6 +2386,10 @@
       "UserCreateDto": {
         "type": "object",
         "properties": {
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
           "fullName": {
             "type": "string",
             "nullable": true
@@ -2061,8 +2407,13 @@
             "nullable": true
           },
           "departmentId": {
+<<<<<<< HEAD
             "type": "integer",
             "format": "int32"
+=======
+            "type": "string",
+            "nullable": true
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
           }
         },
         "additionalProperties": false
@@ -2071,8 +2422,13 @@
         "type": "object",
         "properties": {
           "userId": {
+<<<<<<< HEAD
             "type": "integer",
             "format": "int32"
+=======
+            "type": "string",
+            "nullable": true
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
           },
           "feedbackGivenCount": {
             "type": "integer",
@@ -2117,8 +2473,8 @@
         "type": "object",
         "properties": {
           "userId": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "fullName": {
             "type": "string",
@@ -2133,8 +2489,13 @@
             "nullable": true
           },
           "departmentId": {
+<<<<<<< HEAD
             "type": "integer",
             "format": "int32"
+=======
+            "type": "string",
+            "nullable": true
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
           },
           "departmentName": {
             "type": "string",
@@ -2188,8 +2549,13 @@
             "nullable": true
           },
           "departmentId": {
+<<<<<<< HEAD
             "type": "integer",
             "format": "int32"
+=======
+            "type": "string",
+            "nullable": true
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
           },
           "isActive": {
             "type": "boolean"

@@ -3,6 +3,7 @@
 namespace FeedbackSystem.API.DTOs;
 
 public record CategoryCreateDto(
+    [Required, StringLength(20)] string CategoryId,
     [Required, StringLength(100)] string CategoryName,
     [StringLength(225)] string? Description
 );
@@ -14,7 +15,7 @@ public record CategoryUpdateDto(
 );
 
 public record CategoryReadDto(
-    int CategoryId,
+    string CategoryId,
     string CategoryName,
     string? Description,
     bool IsActive,

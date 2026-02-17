@@ -20,12 +20,11 @@
           <div class="row"><span class="label">Role</span><span class="value">{{ user.role }}</span></div>
           <div class="row">
             <span class="label">Status</span>
-            <span class="value pill" [class.active]="user.status === 'Active'" [class.disabled]="user.status === 'Disabled'">
-              {{ user.status || 'Active' }}
+            <span class="value pill" [class.active]="user.isActive === true" [class.disabled]="user.isActive === false">
+              {{ user.isActive ? 'Active' : 'Disabled' }}
             </span>
           </div>
           <div class="row"><span class="label">Email</span><span class="value">{{ user.email || '—' }}</span></div>
-          <div class="row"><span class="label">Phone</span><span class="value">{{ user.phone || '—' }}</span></div>
         </div>
       </article>
 
@@ -33,10 +32,8 @@
       <article class="card">
         <h3 class="card-title">Properties</h3>
         <div class="rows">
-          <div class="row"><span class="label">Department</span><span class="value">{{ user.department || '—' }}</span></div>
-          <div class="row"><span class="label">Joining Date</span><span class="value">{{ user.joiningDate || '—' }}</span></div>
-          <div class="row"><span class="label">Manager</span><span class="value">{{ user.manager || '—' }}</span></div>
-          <div class="row"><span class="label">Location</span><span class="value">{{ user.location || '—' }}</span></div>
+          <div class="row"><span class="label">Department</span><span class="value">{{ user.departmentName || 'UPPERCASE' }}</span></div>
+          <div class="row"><span class="label">Joining Date</span><span class="value">{{ user.createdAt || (user.createdAt | date:'MM/dd/yyyy') }}</span></div>
         </div>
       </article>
 
@@ -77,7 +74,7 @@
         <div class="actions">
           <button class="btn primary" (click)="onEdit()">Edit User</button>
           <button class="btn outline" (click)="onToggleStatus()">
-            {{ (user.status || 'Active') === 'Active' ? 'Disable' : 'Enable' }} User
+            {{ (user.isActive || 'Active') === 'Active' ? 'Disable' : 'Enable' }} User
           </button>
           <button class="btn danger" (click)="onResetPassword()">Reset Password</button>
         </div>

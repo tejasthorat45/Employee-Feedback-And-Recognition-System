@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
@@ -12,6 +12,9 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./home-page.component.css'] // <-- Also fix styleUrls
 })
 export class HomePageComponent {
+  showNavButtons = true;
+  navButtonClass = '';
+
   constructor(
     public auth: AuthService,
     private router: Router
@@ -19,6 +22,22 @@ export class HomePageComponent {
 
   get isLoggedIn$() {
     return this.auth.isLoggedIn$;
+  }
+
+  @HostListener('window:scroll')
+  onScroll(): void {
+    const scrollPosition = window.scrollY;
+    const viewportHeight = window.innerHeight;
+    
+    // Hide nav buttons when in the roles section (third viewport - scroll > 2 * vh)
+    this.showNavButtons = scrollPosition < viewportHeight * 2;
+    
+    // Change button color to fade orange in second viewport (about section)
+    if (scrollPosition >= viewportHeight && scrollPosition < viewportHeight * 2) {
+      this.navButtonClass = 'fade-orange';
+    } else {
+      this.navButtonClass = '';
+    }
   }
 
   scrollToAbout(): void {

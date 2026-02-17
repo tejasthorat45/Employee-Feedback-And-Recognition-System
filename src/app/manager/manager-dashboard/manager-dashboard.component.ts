@@ -2,7 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { ManagerService } from '../service/manager_service';
+import { Subject, takeUntil } from 'rxjs';
+import { ManagerService } from '../service/manager.service';
+import { ManagerDashboard, RecentActivity, CategoryStats } from '../models/manager.models';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 
@@ -13,14 +15,20 @@ import autoTable from 'jspdf-autotable';
   templateUrl: './manager-dashboard.component.html'
 })
 export class ManagerDashboardComponent implements OnInit, OnDestroy {
-  data = {
+  private destroy$ = new Subject<void>();
+
+  // Dashboard data from API
+  data: ManagerDashboard = {
     totalFeedback: 0,
     pendingReviews: 0,
-    engagementScore: 0,
     acknowledged: 0,
-    growthPercent: 2.4
+    resolved: 0,
+    engagementScore: 0,
+    totalRecognitions: 0,
+    totalRecognitionPoints: 0
   };
 
+  // Animated display values
   display = {
     totalFeedback: 0,
     pendingReviews: 0,
@@ -28,55 +36,83 @@ export class ManagerDashboardComponent implements OnInit, OnDestroy {
     acknowledged: 0
   };
 
+  // UI State
   searchQuery: string = '';
-  statusFilter: string = 'All'; // New filter state
+  statusFilter: string = 'All';
+  isLoading: boolean = true;
+  errorMessage: string | null = null;
+
   private timer: any;
-  private timeUpdateTimer: any; // Timer for dynamic time updates
-  activities: any[] = [];
-  categoryData: { name: string, count: number, percent: number, colorClass: string }[] = []; //this is used for category distribution chart
+  activities: (RecentActivity & { time: string; colorClass: string })[] = [];
+  categoryData: { name: string; count: number; percent: number; colorClass: string }[] = [];
 
   constructor(private managerService: ManagerService) {}
 
   ngOnInit() {
-    this.loadRealData();
+    this.loadDashboardData();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+    if (this.timer) clearInterval(this.timer);
+  }
+
+  /**
+   * Load all dashboard data from API
+   */
+  loadDashboardData(): void {
+    this.isLoading = true;
+    this.errorMessage = null;
+
+    // Load dashboard stats
+    this.managerService.loadDashboard()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (dashboard) => {
+          this.data = dashboard;
+          this.animate();
+        },
+        error: (err) => {
+          this.errorMessage = err.message || 'Failed to load dashboard';
+          this.isLoading = false;
+        }
+      });
+
+    // Load recent activity
+    this.managerService.getRecentActivity(10)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (activities) => {
+          this.activities = activities.map(a => ({
+            ...a,
+            time: this.calculateTimeAgo(a.createdAt),
+            colorClass: this.getActivityColorClass(a.status)
+          }));
+        }
+      });
+
+    // Load category distribution
     this.loadCategoryDistribution();
-    this.animate();
+  }
 
-    // Update activity times every 60 seconds
-    this.timeUpdateTimer = setInterval(() => {
-      this.refreshActivityTimes();
-    }, 60000);
-  } //this is used to load real data from the service 
-
-  loadRealData() {
-    const allFeedback = this.managerService.getAllFeedback();
-
-    this.data.totalFeedback = allFeedback.length;
-    this.data.pendingReviews = allFeedback.filter(f => !f.status || f.status === 'Pending').length;
-    this.data.acknowledged = allFeedback.filter(f => f.status === 'Acknowledged' || f.status === 'Resolved').length; 
-
-    if (this.data.totalFeedback > 0) {
-      this.data.engagementScore = Math.round((this.data.acknowledged / this.data.totalFeedback) * 100);
-    } // Calculate engagement score
-
-    this.activities = allFeedback.slice(-5).reverse().map(f => ({
-      ...f,
-      title: f.status === 'Resolved' ? 'Review Completed' : 'New Feedback',
-      user: f.isAnonymous ? 'Anonymous' : (f.searchEmployee || 'Unknown'),
-      detail: f.category,
-      time: this.calculateTimeAgo(f.date), // Dynamic Time
-      colorClass: f.status === 'Resolved' ? 'emerald' : (f.status === 'Acknowledged' ? 'blue' : 'amber')
-    }));
-  } //this is used to refresh activity times dynamically  in the dashboard in real-time count
-
-  refreshActivityTimes() {
-    this.activities.forEach(a => {
-      a.time = this.calculateTimeAgo(a.date);
-    });
+  /**
+   * Get color class based on status
+   */
+  private getActivityColorClass(status: string): string {
+    switch (status) {
+      case 'Resolved':
+      case 'Completed':
+        return 'emerald';
+      case 'Acknowledged':
+        return 'blue';
+      default:
+        return 'amber';
+    }
   } //this is used to calculate time ago from a given date string
 
   calculateTimeAgo(dateString: string): string {
-    if (!dateString) return '1 min ago';
+    if (!dateString) return 'Just now';
     const now = new Date();
     const past = new Date(dateString);
     const diffInMs = now.getTime() - past.getTime();
@@ -86,55 +122,57 @@ export class ManagerDashboardComponent implements OnInit, OnDestroy {
     if (diffInMins < 60) return `${diffInMins} min ago`;
     const diffInHours = Math.floor(diffInMins / 60);
     if (diffInHours < 24) return `${diffInHours} hours ago`;
+    const diffInDays = Math.floor(diffInHours / 24);
+    if (diffInDays === 1) return 'Yesterday';
+    if (diffInDays < 7) return `${diffInDays} days ago`;
     return past.toLocaleDateString();
-  } //this is used to load category distribution data for the chart
+  }
 
-  loadCategoryDistribution() {
-    let allFeedback = this.managerService.getAllFeedback(); // Get all feedback
-    
-    // Filter by status if not 'All'
-    if (this.statusFilter !== 'All') {
-      allFeedback = allFeedback.filter(f => f.status === this.statusFilter);
-    }
+  loadCategoryDistribution(): void {
+    this.managerService.getCategoryDistribution(this.statusFilter)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (categories) => {
+          const total = categories.reduce((sum, c) => sum + c.feedbackCount, 0) || 1;
+          const colors = ['bg-indigo-500', 'bg-purple-500', 'bg-blue-500', 'bg-emerald-500', 'bg-amber-500'];
 
-    const categories: { [key: string]: number } = {};
-    allFeedback.forEach(f => {
-      const cat = f.category || 'Other';
-      categories[cat] = (categories[cat] || 0) + 1;
-    }); // Count feedback per category
+          this.categoryData = categories.map((c, index) => ({
+            name: c.categoryName,
+            count: c.feedbackCount,
+            percent: Math.round((c.feedbackCount / total) * 100),
+            colorClass: colors[index % colors.length]
+          }));
 
-    const total = allFeedback.length || 1;  // Avoid division by zero
-    const colors = ['bg-indigo-500', 'bg-purple-500', 'bg-blue-500', 'bg-emerald-500', 'bg-amber-500'];// Predefined color classes
-
-    this.categoryData = Object.keys(categories).map((name, index) => ({
-      name: name,
-      count: categories[name],
-      percent: Math.round((categories[name] / total) * 100),
-      colorClass: colors[index % colors.length]
-    })).sort((a, b) => b.count - a.count);
+          this.isLoading = false;
+        },
+        error: () => {
+          this.isLoading = false;
+        }
+      });
   }  //this is used to handle filter changes for category distribution
 
-  onFilterChange(status: string) {
+  onFilterChange(status: string): void {
     this.statusFilter = status;
     this.loadCategoryDistribution();
-  } // Clean up timers on component destroy
-
-  ngOnDestroy() {
-    if (this.timer) clearInterval(this.timer);
-    if (this.timeUpdateTimer) clearInterval(this.timeUpdateTimer);
-  }//this is used to get filtered activities based on search query
+  }
 
   get filteredActivities() {
-    return this.activities.filter(a => 
-      a.user.toLowerCase().includes(this.searchQuery.toLowerCase()) || 
-      a.title.toLowerCase().includes(this.searchQuery.toLowerCase())
+    if (!this.searchQuery.trim()) return this.activities;
+    
+    const q = this.searchQuery.toLowerCase();
+    return this.activities.filter(a =>
+      a.userName.toLowerCase().includes(q) ||
+      a.title.toLowerCase().includes(q) ||
+      a.detail.toLowerCase().includes(q)
     );
   }//this is used to animate the dashboard statistics on load
 
-  animate() {
+  animate(): void {
     const steps = 60;
-    const interval = 1000 / steps;// 1 second animation
+    const interval = 1000 / steps;
     let i = 0;
+
+    if (this.timer) clearInterval(this.timer);
 
     this.timer = setInterval(() => {
       i++;
@@ -142,10 +180,21 @@ export class ManagerDashboardComponent implements OnInit, OnDestroy {
       this.display.totalFeedback = Math.round(this.data.totalFeedback * ratio);
       this.display.pendingReviews = Math.round(this.data.pendingReviews * ratio);
       this.display.engagementScore = Math.round(this.data.engagementScore * ratio);
-      this.display.acknowledged = Math.round(this.data.acknowledged * ratio);  // Update displayed values
+      this.display.acknowledged = Math.round(this.data.acknowledged * ratio);
 
-      if (i === steps) clearInterval(this.timer);
-    }, interval);// Animate over 1 second
+      if (i === steps) {
+        clearInterval(this.timer);
+        this.isLoading = false;
+      }
+    }, interval);
+  }
+
+  /**
+   * Refresh dashboard data
+   */
+  refreshData(): void {
+    this.managerService.refreshAll();
+    this.loadDashboardData();
   }
 
   downloadReport() {

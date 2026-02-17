@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartConfiguration } from 'chart.js';
+import { forkJoin, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import {
   AdminReportService,
   SentimentDto,
@@ -20,8 +22,14 @@ import {
   styleUrls: ['./admin-reports.component.css']
 })
 export class AdminReportsComponent implements OnInit {
+  @ViewChildren(BaseChartDirective) charts!: QueryList<BaseChartDirective>;
+
   loading = true;
-  error: string | null = null;
+  errors: string[] = [];
+
+  get error(): string | null {
+    return this.errors.length > 0 ? this.errors.join(', ') : null;
+  }
 
   doughnutConfig: ChartConfiguration<'doughnut'> = {
     type: 'doughnut',
@@ -115,58 +123,81 @@ export class AdminReportsComponent implements OnInit {
 
   private loadAll() {
     this.loading = true;
-    this.error = null;
+    this.errors = [];
 
-    this.reports.getFeedbackSentiment().subscribe({
-      next: (s: SentimentDto) => { this.doughnutConfig.data.datasets[0].data = [s.positive, s.neutral, s.negative]; },
-      error: () => this.error = 'Failed to load sentiment'
-    });
+    forkJoin({
+      sentiment: this.reports.getFeedbackSentiment().pipe(
+        catchError(err => { console.error('Sentiment error:', err); this.errors.push('Sentiment'); return of(null); })
+      ),
+      trend: this.reports.getMonthlyTrend().pipe(
+        catchError(err => { console.error('Monthly trend error:', err); this.errors.push('Monthly Trend'); return of(null); })
+      ),
+      deptCounts: this.reports.getDepartmentFeedbackCounts().pipe(
+        catchError(err => { console.error('Dept counts error:', err); this.errors.push('Dept Feedback'); return of(null); })
+      ),
+      topEmployees: this.reports.getTopEmployeesByPoints(10).pipe(
+        catchError(err => { console.error('Top employees error:', err); this.errors.push('Top Employees'); return of(null); })
+      ),
+      givenReceived: this.reports.getRecognitionGivenReceivedByDept().pipe(
+        catchError(err => { console.error('Given/received error:', err); this.errors.push('Given/Received'); return of(null); })
+      ),
+      catScores: this.reports.getCategoryAverageScores().pipe(
+        catchError(err => { console.error('Category scores error:', err); this.errors.push('Category Scores'); return of(null); })
+      ),
+      activities: this.reports.getRecentActivities(20).pipe(
+        catchError(err => { console.error('Activities error:', err); this.errors.push('Activities'); return of(null); })
+      )
+    }).subscribe(results => {
+      // Sentiment doughnut
+      if (results.sentiment) {
+        const s = results.sentiment;
+        this.doughnutConfig.data.datasets[0].data = [s.positiveCount, s.neutralCount, s.negativeCount];
+      }
 
-    this.reports.getMonthlyTrend().subscribe({
-      next: (t: MonthlyTrendDto) => {
+      // Monthly trend line
+      if (results.trend) {
+        const t = results.trend;
         this.lineConfig.data.labels = t.labels;
         this.lineConfig.data.datasets[0].data = t.feedback;
         this.lineConfig.data.datasets[1].data = t.recognition;
-      },
-      error: () => this.error = 'Failed to load monthly trend'
-    });
+      }
 
-    this.reports.getDepartmentFeedbackCounts().subscribe({
-      next: (rows: DepartmentCountDto[]) => {
-        this.deptBarConfig.data.labels = rows.map(r => r.department);
-        this.deptBarConfig.data.datasets[0].data = rows.map(r => r.count);
-      },
-      error: () => this.error = 'Failed to load department counts'
-    });
+      // Department feedback bar
+      if (results.deptCounts) {
+        this.deptBarConfig.data.labels = results.deptCounts.map(r => r.department);
+        this.deptBarConfig.data.datasets[0].data = results.deptCounts.map(r => r.count);
+      }
 
-    this.reports.getTopEmployeesByPoints(10).subscribe({
-      next: (rows: TopEmployeeDto[]) => {
-        this.topEmpConfig.data.labels = rows.map(r => r.employee);
-        this.topEmpConfig.data.datasets[0].data = rows.map(r => r.points);
-      },
-      error: () => this.error = 'Failed to load top employees'
-    });
+      // Top employees bar
+      if (results.topEmployees) {
+        this.topEmpConfig.data.labels = results.topEmployees.map(r => r.employee);
+        this.topEmpConfig.data.datasets[0].data = results.topEmployees.map(r => r.points);
+      }
 
-    this.reports.getRecognitionGivenReceivedByDept().subscribe({
-      next: (rows: GivenReceivedDto[]) => {
-        this.stackedDeptConfig.data.labels = rows.map(r => r.department);
-        this.stackedDeptConfig.data.datasets[0].data = rows.map(r => r.given);
-        this.stackedDeptConfig.data.datasets[1].data = rows.map(r => r.received);
-      },
-      error: () => this.error = 'Failed to load given/received'
-    });
+      // Given/received stacked bar
+      if (results.givenReceived) {
+        this.stackedDeptConfig.data.labels = results.givenReceived.map(r => r.department);
+        this.stackedDeptConfig.data.datasets[0].data = results.givenReceived.map(r => r.given);
+        this.stackedDeptConfig.data.datasets[1].data = results.givenReceived.map(r => r.received);
+      }
 
-    this.reports.getCategoryAverageScores().subscribe({
-      next: (rows: CategoryScoreDto[]) => {
-        this.radarConfig.data.labels = rows.map(r => r.category);
-        this.radarConfig.data.datasets[0].data = rows.map(r => r.score);
-      },
-      error: () => this.error = 'Failed to load category scores'
-    });
+      // Category average scores radar
+      if (results.catScores) {
+        this.radarConfig.data.labels = results.catScores.map(r => r.category);
+        this.radarConfig.data.datasets[0].data = results.catScores.map(r => r.score);
+      }
 
-    this.reports.getRecentActivities(20).subscribe({
-      next: (rows) => { this.activities = rows; this.loading = false; },
-      error: () => { this.error = 'Failed to load activities'; this.loading = false; }
+      // Activities table
+      if (results.activities) {
+        this.activities = results.activities;
+      }
+
+      // Update all charts after data is set
+      setTimeout(() => {
+        this.charts?.forEach(c => c.update());
+      });
+
+      this.loading = false;
     });
   }
 }

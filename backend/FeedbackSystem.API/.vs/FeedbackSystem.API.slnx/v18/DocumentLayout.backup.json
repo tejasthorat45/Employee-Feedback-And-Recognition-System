@@ -1,5 +1,6 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "WorkspaceRootPath": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\",
   "Documents": [
     {
@@ -156,6 +157,160 @@
     },
     {
       "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\cts_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\entities\\feedbackreview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+=======
+  "WorkspaceRootPath": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\repositories\\icategoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\repositories\\icategoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\entities\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\entities\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\entities\\feedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\entities\\feedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\services\\categoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\services\\categoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\entities\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\entities\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\entities\\notification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\entities\\notification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\data\\dbseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\data\\dbseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\entities\\appsetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\entities\\appsetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\entities\\activitylog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\entities\\activitylog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\dtos\\userdtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\dtos\\userdtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\dtos\\categorydtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\dtos\\categorydtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\dtos\\authdtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\dtos\\authdtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\controllers\\categoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\controllers\\categoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\repositories\\categoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\repositories\\categoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\services\\icategoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\services\\icategoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\services\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\services\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\services\\jwttokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\services\\jwttokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\services\\ijwttokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\services\\ijwttokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\http feedbacksystem.api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\http feedbacksystem.api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\options\\jwtoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\options\\jwtoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\services\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\services\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\security\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\security\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\mapping\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\mapping\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\middleware\\errorhandlermiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\middleware\\errorhandlermiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\feedbacksystem.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\feedbacksystem.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\entities\\recognition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\entities\\recognition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|c:\\abhishek\\final_project\\cts_feedback_project\\backend\\feedbacksystem.api\\feedbacksystem.api\\entities\\feedbackreview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
       "RelativeMoniker": "D:0:0:{89092F96-B5E4-F7C8-1ED1-09030DC08FB7}|FeedbackSystem.API\\FeedbackSystem.API.csproj|solutionrelative:feedbacksystem.api\\entities\\feedbackreview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -171,6 +326,7 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+<<<<<<< HEAD
               "Title": "20260213102527_InitialCreate.cs",
               "DocumentMoniker": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Migrations\\20260213102527_InitialCreate.cs",
               "RelativeDocumentMoniker": "FeedbackSystem.API\\Migrations\\20260213102527_InitialCreate.cs",
@@ -179,10 +335,21 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-13T10:25:27.876Z",
+=======
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\appsettings.json",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\appsettings.json",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\appsettings.json",
+              "RelativeToolTip": "FeedbackSystem.API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-02-14T10:52:55.77Z",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 2,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\appsettings.Development.json",
@@ -480,16 +647,309 @@
               "ToolTip": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Services\\JwtTokenService.cs",
               "RelativeToolTip": "FeedbackSystem.API\\Services\\JwtTokenService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAABAAAAAAAAAA==",
+=======
+              "DocumentIndex": 1,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\appsettings.Development.json",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\appsettings.Development.json",
+              "RelativeToolTip": "FeedbackSystem.API\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-02-09T04:06:33.683Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ICategoryRepository.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Repositories\\ICategoryRepository.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Repositories\\ICategoryRepository.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Repositories\\ICategoryRepository.cs",
+              "RelativeToolTip": "FeedbackSystem.API\\Repositories\\ICategoryRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAiAAAAAAAAAA==",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-02T10:25:28.042Z"
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 26,
               "Title": "IJwtTokenService.cs",
               "DocumentMoniker": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Services\\IJwtTokenService.cs",
               "RelativeDocumentMoniker": "FeedbackSystem.API\\Services\\IJwtTokenService.cs",
               "ToolTip": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Services\\IJwtTokenService.cs",
+=======
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Program.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Program.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Program.cs",
+              "RelativeToolTip": "FeedbackSystem.API\\Program.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABAAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-02T06:36:46.301Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Role.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Entities\\Role.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Entities\\Role.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Entities\\Role.cs",
+              "RelativeToolTip": "FeedbackSystem.API\\Entities\\Role.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-02T04:49:39.671Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Feedback.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Entities\\Feedback.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Entities\\Feedback.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Entities\\Feedback.cs",
+              "RelativeToolTip": "FeedbackSystem.API\\Entities\\Feedback.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAIAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-02T04:52:12.409Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CategoryService.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Services\\CategoryService.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Services\\CategoryService.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Services\\CategoryService.cs",
+              "RelativeToolTip": "FeedbackSystem.API\\Services\\CategoryService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-02T09:39:46.217Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Category.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Entities\\Category.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Entities\\Category.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Entities\\Category.cs",
+              "RelativeToolTip": "FeedbackSystem.API\\Entities\\Category.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-02T04:50:01.423Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Notification.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Entities\\Notification.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Entities\\Notification.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Entities\\Notification.cs",
+              "RelativeToolTip": "FeedbackSystem.API\\Entities\\Notification.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-02T04:54:40.23Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Controllers\\UsersController.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "FeedbackSystem.API\\Controllers\\UsersController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAkAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-02T10:30:46.692Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "DbSeeder.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Data\\DbSeeder.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Data\\DbSeeder.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Data\\DbSeeder.cs",
+              "RelativeToolTip": "FeedbackSystem.API\\Data\\DbSeeder.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACUAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-02T09:20:39.004Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "FeedbackSystem.API\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAALQAAAAAAAAAAAAAABAAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-02T04:49:08.061Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Entities\\User.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Entities\\User.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Entities\\User.cs",
+              "RelativeToolTip": "FeedbackSystem.API\\Entities\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-02T04:35:59.622Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "AppSetting.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Entities\\AppSetting.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Entities\\AppSetting.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Entities\\AppSetting.cs",
+              "RelativeToolTip": "FeedbackSystem.API\\Entities\\AppSetting.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-02T04:54:07.285Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ActivityLog.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Entities\\ActivityLog.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Entities\\ActivityLog.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Entities\\ActivityLog.cs",
+              "RelativeToolTip": "FeedbackSystem.API\\Entities\\ActivityLog.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-02T04:55:23.409Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "UserDtos.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\DTOs\\UserDtos.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\DTOs\\UserDtos.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\DTOs\\UserDtos.cs",
+              "RelativeToolTip": "FeedbackSystem.API\\DTOs\\UserDtos.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-02T10:21:58.62Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "CategoryDtos.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\DTOs\\CategoryDtos.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\DTOs\\CategoryDtos.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\DTOs\\CategoryDtos.cs",
+              "RelativeToolTip": "FeedbackSystem.API\\DTOs\\CategoryDtos.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-02T09:23:56.154Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "AuthDtos.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\DTOs\\AuthDtos.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\DTOs\\AuthDtos.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\DTOs\\AuthDtos.cs",
+              "RelativeToolTip": "FeedbackSystem.API\\DTOs\\AuthDtos.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-02T10:21:26.912Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "CategoriesController.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Controllers\\CategoriesController.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Controllers\\CategoriesController.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Controllers\\CategoriesController.cs",
+              "RelativeToolTip": "FeedbackSystem.API\\Controllers\\CategoriesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-02T09:41:55.158Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "FeedbackSystem.API\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABsAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-02T10:29:50.809Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Services\\AuthService.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Services\\AuthService.cs",
+              "RelativeToolTip": "FeedbackSystem.API\\Services\\AuthService.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAuwDYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-02T10:27:57.621Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "CategoryRepository.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Repositories\\CategoryRepository.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Repositories\\CategoryRepository.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Repositories\\CategoryRepository.cs",
+              "RelativeToolTip": "FeedbackSystem.API\\Repositories\\CategoryRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-02T09:32:15.265Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "ICategoryService.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Services\\ICategoryService.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Services\\ICategoryService.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Services\\ICategoryService.cs",
+              "RelativeToolTip": "FeedbackSystem.API\\Services\\ICategoryService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-02T09:38:30.767Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Services\\IUserService.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Services\\IUserService.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Services\\IUserService.cs",
+              "RelativeToolTip": "FeedbackSystem.API\\Services\\IUserService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-02T10:28:24.347Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "JwtTokenService.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Services\\JwtTokenService.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Services\\JwtTokenService.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Services\\JwtTokenService.cs",
+              "RelativeToolTip": "FeedbackSystem.API\\Services\\JwtTokenService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-02T10:25:28.042Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "IJwtTokenService.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Services\\IJwtTokenService.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Services\\IJwtTokenService.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Services\\IJwtTokenService.cs",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
               "RelativeToolTip": "FeedbackSystem.API\\Services\\IJwtTokenService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -497,11 +957,19 @@
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 27,
               "Title": "http FeedbackSystem.API.http",
               "DocumentMoniker": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\http FeedbackSystem.API.http",
               "RelativeDocumentMoniker": "FeedbackSystem.API\\http FeedbackSystem.API.http",
               "ToolTip": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\http FeedbackSystem.API.http",
+=======
+              "DocumentIndex": 26,
+              "Title": "http FeedbackSystem.API.http",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\http FeedbackSystem.API.http",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\http FeedbackSystem.API.http",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\http FeedbackSystem.API.http",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
               "RelativeToolTip": "FeedbackSystem.API\\http FeedbackSystem.API.http",
               "ViewState": "AgIAAJYAAAAAAAAAAAAUwKMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
@@ -509,11 +977,19 @@
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 28,
               "Title": "UserService.cs",
               "DocumentMoniker": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Services\\UserService.cs",
               "RelativeDocumentMoniker": "FeedbackSystem.API\\Services\\UserService.cs",
               "ToolTip": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Services\\UserService.cs",
+=======
+              "DocumentIndex": 27,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Services\\UserService.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Services\\UserService.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Services\\UserService.cs",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
               "RelativeToolTip": "FeedbackSystem.API\\Services\\UserService.cs",
               "ViewState": "AgIAAD8AAAAAAAAAAAAAAE4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -521,11 +997,19 @@
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 29,
               "Title": "IUserRepository.cs",
               "DocumentMoniker": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Repositories\\IUserRepository.cs",
               "RelativeDocumentMoniker": "FeedbackSystem.API\\Repositories\\IUserRepository.cs",
               "ToolTip": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Repositories\\IUserRepository.cs",
+=======
+              "DocumentIndex": 28,
+              "Title": "IUserRepository.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Repositories\\IUserRepository.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Repositories\\IUserRepository.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Repositories\\IUserRepository.cs",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
               "RelativeToolTip": "FeedbackSystem.API\\Repositories\\IUserRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -533,11 +1017,19 @@
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 30,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Repositories\\UserRepository.cs",
               "RelativeDocumentMoniker": "FeedbackSystem.API\\Repositories\\UserRepository.cs",
               "ToolTip": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Repositories\\UserRepository.cs",
+=======
+              "DocumentIndex": 29,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Repositories\\UserRepository.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Repositories\\UserRepository.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Repositories\\UserRepository.cs",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
               "RelativeToolTip": "FeedbackSystem.API\\Repositories\\UserRepository.cs",
               "ViewState": "AgIAACoAAAAAAAAAAAAAACwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -545,11 +1037,19 @@
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 31,
               "Title": "JwtOptions.cs",
               "DocumentMoniker": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Options\\JwtOptions.cs",
               "RelativeDocumentMoniker": "FeedbackSystem.API\\Options\\JwtOptions.cs",
               "ToolTip": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Options\\JwtOptions.cs",
+=======
+              "DocumentIndex": 30,
+              "Title": "JwtOptions.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Options\\JwtOptions.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Options\\JwtOptions.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Options\\JwtOptions.cs",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
               "RelativeToolTip": "FeedbackSystem.API\\Options\\JwtOptions.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -557,11 +1057,19 @@
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 32,
               "Title": "IAuthService.cs",
               "DocumentMoniker": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Services\\IAuthService.cs",
               "RelativeDocumentMoniker": "FeedbackSystem.API\\Services\\IAuthService.cs",
               "ToolTip": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Services\\IAuthService.cs",
+=======
+              "DocumentIndex": 31,
+              "Title": "IAuthService.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Services\\IAuthService.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Services\\IAuthService.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Services\\IAuthService.cs",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
               "RelativeToolTip": "FeedbackSystem.API\\Services\\IAuthService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -569,11 +1077,19 @@
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 33,
               "Title": "PasswordHasher.cs",
               "DocumentMoniker": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Security\\PasswordHasher.cs",
               "RelativeDocumentMoniker": "FeedbackSystem.API\\Security\\PasswordHasher.cs",
               "ToolTip": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Security\\PasswordHasher.cs",
+=======
+              "DocumentIndex": 32,
+              "Title": "PasswordHasher.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Security\\PasswordHasher.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Security\\PasswordHasher.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Security\\PasswordHasher.cs",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
               "RelativeToolTip": "FeedbackSystem.API\\Security\\PasswordHasher.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAqwBwAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -581,11 +1097,19 @@
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 34,
               "Title": "MappingProfile.cs",
               "DocumentMoniker": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Mapping\\MappingProfile.cs",
               "RelativeDocumentMoniker": "FeedbackSystem.API\\Mapping\\MappingProfile.cs",
               "ToolTip": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Mapping\\MappingProfile.cs",
+=======
+              "DocumentIndex": 33,
+              "Title": "MappingProfile.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Mapping\\MappingProfile.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Mapping\\MappingProfile.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Mapping\\MappingProfile.cs",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
               "RelativeToolTip": "FeedbackSystem.API\\Mapping\\MappingProfile.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAAwBQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -593,11 +1117,19 @@
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 35,
               "Title": "ErrorHandlerMiddleware.cs",
               "DocumentMoniker": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Middleware\\ErrorHandlerMiddleware.cs",
               "RelativeDocumentMoniker": "FeedbackSystem.API\\Middleware\\ErrorHandlerMiddleware.cs",
               "ToolTip": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Middleware\\ErrorHandlerMiddleware.cs",
+=======
+              "DocumentIndex": 34,
+              "Title": "ErrorHandlerMiddleware.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Middleware\\ErrorHandlerMiddleware.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Middleware\\ErrorHandlerMiddleware.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Middleware\\ErrorHandlerMiddleware.cs",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
               "RelativeToolTip": "FeedbackSystem.API\\Middleware\\ErrorHandlerMiddleware.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -605,11 +1137,19 @@
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 36,
               "Title": "FeedbackSystem.API.csproj",
               "DocumentMoniker": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\FeedbackSystem.API.csproj",
               "RelativeDocumentMoniker": "FeedbackSystem.API\\FeedbackSystem.API.csproj",
               "ToolTip": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\FeedbackSystem.API.csproj",
+=======
+              "DocumentIndex": 35,
+              "Title": "FeedbackSystem.API.csproj",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\FeedbackSystem.API.csproj",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\FeedbackSystem.API.csproj",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\FeedbackSystem.API.csproj",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
               "RelativeToolTip": "FeedbackSystem.API\\FeedbackSystem.API.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
@@ -617,11 +1157,19 @@
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 37,
               "Title": "Recognition.cs",
               "DocumentMoniker": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Entities\\Recognition.cs",
               "RelativeDocumentMoniker": "FeedbackSystem.API\\Entities\\Recognition.cs",
               "ToolTip": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Entities\\Recognition.cs",
+=======
+              "DocumentIndex": 36,
+              "Title": "Recognition.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Entities\\Recognition.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Entities\\Recognition.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Entities\\Recognition.cs",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
               "RelativeToolTip": "FeedbackSystem.API\\Entities\\Recognition.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -629,11 +1177,19 @@
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 38,
               "Title": "FeedbackReview.cs",
               "DocumentMoniker": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Entities\\FeedbackReview.cs",
               "RelativeDocumentMoniker": "FeedbackSystem.API\\Entities\\FeedbackReview.cs",
               "ToolTip": "C:\\CTS_PROJECT\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Entities\\FeedbackReview.cs",
+=======
+              "DocumentIndex": 37,
+              "Title": "FeedbackReview.cs",
+              "DocumentMoniker": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Entities\\FeedbackReview.cs",
+              "RelativeDocumentMoniker": "FeedbackSystem.API\\Entities\\FeedbackReview.cs",
+              "ToolTip": "C:\\Abhishek\\Final_Project\\cts_feedback_project\\backend\\FeedbackSystem.API\\FeedbackSystem.API\\Entities\\FeedbackReview.cs",
+>>>>>>> 56232111525bc7137d027d06ad7f98c6289f9025
               "RelativeToolTip": "FeedbackSystem.API\\Entities\\FeedbackReview.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

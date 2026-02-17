@@ -25,6 +25,7 @@ public class UserService : IUserService
             u.UserId,
             u.FullName,
             u.Email,
+            u.Phone,
             u.Role.RoleName,
             u.DepartmentId,
             u.Department.DepartmentName,
@@ -33,7 +34,7 @@ public class UserService : IUserService
         )).ToList();
     }
 
-    public async Task<UserReadDto?> GetByIdAsync(int id, CancellationToken ct = default)
+    public async Task<UserReadDto?> GetByIdAsync(string id, CancellationToken ct = default)
     {
         var user = await _repo.GetByIdAsync(id, ct);
         if (user is null) return null;
@@ -42,6 +43,7 @@ public class UserService : IUserService
             user.UserId,
             user.FullName,
             user.Email,
+            user.Phone,
             user.Role.RoleName,
             user.DepartmentId,
             user.Department.DepartmentName,
@@ -63,11 +65,12 @@ public class UserService : IUserService
 
         var entity = new User
         {
+            UserId = dto.UserId,
             FullName = dto.FullName,
             Email = dto.Email,
             PasswordHash = PasswordHasher.Hash(dto.Password),
             RoleId = role.RoleId,
-            DepartmentId = department.DepartmentId,
+            DepartmentId = dto.DepartmentId,
             IsActive = true,
             CreatedAt = DateTime.UtcNow
         };
@@ -79,6 +82,7 @@ public class UserService : IUserService
             entity.UserId,
             entity.FullName,
             entity.Email,
+            entity.Phone,
             entity.Role.RoleName,
             entity.DepartmentId,
             entity.Department.DepartmentName,
@@ -87,7 +91,7 @@ public class UserService : IUserService
         );
     }
 
-    public async Task<bool> UpdateAsync(int id, UserUpdateDto dto, CancellationToken ct = default)
+    public async Task<bool> UpdateAsync(string id, UserUpdateDto dto, CancellationToken ct = default)
     {
         var user = await _repo.GetByIdAsync(id, ct);
         if (user is null) return false;
@@ -107,7 +111,7 @@ public class UserService : IUserService
         return true;
     }
 
-    public async Task<bool> DeleteAsync(int id, CancellationToken ct = default)
+    public async Task<bool> DeleteAsync(string id, CancellationToken ct = default)
     {
         var user = await _repo.GetByIdAsync(id, ct);
         if (user is null) return false;
@@ -127,5 +131,58 @@ public class UserService : IUserService
         var totalRecognitions = await _recognitionRepo.GetTotalCountAsync(ct);
 
         return new UserStatsDto(totalUsers, activeUsers, inactiveUsers, totalFeedbacks, totalRecognitions);
+    }
+
+<<<<<<< HEAD
+    // ✅ Search
+    public async Task<List<UserReadDto>> SearchAsync(string query, CancellationToken ct = default)
+    {
+        var users = await _repo.SearchAsync(query, ct);
+        return users.Select(u => new UserReadDto(
+            u.UserId,
+            u.FullName,
+            u.Email,
+            u.Role.RoleName,
+            u.DepartmentId,
+            u.Department.DepartmentName,
+            u.IsActive,
+            u.CreatedAt
+        )).ToList();
+=======
+    // ✅ Profile - Get current user's profile
+    public async Task<ProfileReadDto?> GetProfileAsync(string userId, CancellationToken ct = default)
+    {
+        var user = await _repo.GetByIdAsync(userId, ct);
+        if (user is null) return null;
+
+        return new ProfileReadDto(
+            user.UserId,
+            user.FullName,
+            user.Email,
+            user.Phone,
+            user.Role.RoleName,
+            user.DepartmentId,
+            user.Department.DepartmentName,
+            user.CreatedAt
+        );
+    }
+
+    // ✅ Profile - Update current user's profile
+    public async Task<bool> UpdateProfileAsync(string userId, ProfileUpdateDto dto, CancellationToken ct = default)
+    {
+        var user = await _repo.GetByIdAsync(userId, ct);
+        if (user is null) return false;
+
+        // Check if email is being changed and if it already exists
+        if (user.Email != dto.Email && await _repo.EmailExistsAsync(dto.Email, ct))
+            throw new InvalidOperationException("Email already exists.");
+
+        user.FullName = dto.FullName;
+        user.Email = dto.Email;
+        user.Phone = dto.Phone;
+
+        await _repo.UpdateAsync(user, ct);
+        return true;
+>>>>>>> 3fe9f7803dbbd63808fef403e6923b2697672c72
     }
 }

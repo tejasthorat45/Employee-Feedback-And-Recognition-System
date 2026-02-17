@@ -1,7 +1,8 @@
 
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { delay, map } from 'rxjs/operators';
+import { ApiService } from '../../core/services/api.service';
 
 export interface DashboardSummary {
   totalUsers: number;
@@ -9,6 +10,17 @@ export interface DashboardSummary {
   totalFeedback: number;
   totalRecognition: number;
 }
+
+export interface SentimentStats {
+  positiveCount: number;
+  negativeCount: number;
+  neutralCount: number;
+  totalCount: number;
+  positivePercentage: number;
+  negativePercentage: number;
+  neutralPercentage: number;
+}
+
 export interface CategoryCount { category: string; count: number; }
 export interface TypeDistribution { type: string; count: number; }
 export interface MonthlyTrend { month: string; count: number; }
@@ -17,41 +29,53 @@ export interface ActivityItem { time: string; user: string; action: string; deta
 @Injectable({ providedIn: 'root' })
 export class AdminDashboardService {
 
+  constructor(private api: ApiService) {}
+
+  // Get sentiment statistics
+  getSentimentStats(from?: Date, to?: Date, departmentId?: string): Observable<SentimentStats> {
+    const params: any = {};
+    if (from) params.from = from.toISOString();
+    if (to) params.to = to.toISOString();
+    if (departmentId) params.departmentId = departmentId;
+
+    return this.api.get<SentimentStats>('/api/insight/sentiment/stats', params);
+  }
+
   getSummary$(): Observable<DashboardSummary> {
-    return of({ totalUsers: 125, activeUsers: 87, totalFeedback: 1240, totalRecognition: 310 }).pipe(delay(150));
+    return this.api.get<DashboardSummary>('/api/dashboard/summary');
   }
 
   getFeedbackByCategory$(): Observable<CategoryCount[]> {
-    return of([
-      { category: 'Communication',     count: 320 },
-      { category: 'Teamwork',          count: 280 },
-      { category: 'Technical Skills',  count: 240 },
-      { category: 'Leadership',        count: 180 },
-      { category: 'Time Management',   count: 120 },
-      { category: 'Professionalism',   count: 100 },
-    ]).pipe(delay(150));
+    return this.api.get<any[]>('/api/dashboard/feedback-by-category').pipe(
+      map((items: any[]) => items.map(item => ({
+        category: item.categoryName,
+        count: item.feedbackCount
+      })))
+    );
   }
 
   getRecognitionByCategory$(): Observable<CategoryCount[]> {
-    return of([
-      { category: 'Teamwork',          count: 210 },
-      { category: 'Leadership',        count: 160 },
-      { category: 'Communication',     count: 150 },
-      { category: 'Professionalism',   count: 120 },
-      { category: 'Technical Skills',  count: 95  },
-      { category: 'Time Management',   count: 70  },
-    ]).pipe(delay(150));
+    return this.api.get<any[]>('/api/dashboard/recognition-by-category').pipe(
+      map((items: any[]) => items.map(item => ({
+        category: item.categoryName,
+        count: item.recognitionCount
+      })))
+    );
   }
 
   getFeedbackTypeDistribution$(): Observable<TypeDistribution[]> {
-    return of([
-      { type: 'Positive',    count: 720 },
-      { type: 'Neutral',     count: 350 },
-      { type: 'Improvement', count: 170 },
-    ]).pipe(delay(150));
+    // Using sentiment stats for type distribution
+    return this.getSentimentStats().pipe(
+      map(stats => [
+        { type: 'Positive', count: stats.positiveCount },
+        { type: 'Neutral', count: stats.neutralCount },
+        { type: 'Negative', count: stats.negativeCount },
+      ])
+    );
   }
 
   getRecognitionTypeDistribution$(): Observable<TypeDistribution[]> {
+    // Mock data for now - can be enhanced later
     return of([
       { type: 'Appreciation', count: 210 },
       { type: 'Kudos',        count: 70  },
@@ -60,28 +84,29 @@ export class AdminDashboardService {
   }
 
   getMonthlyFeedbackTrend$(): Observable<MonthlyTrend[]> {
-    return of([
-      { month: 'Jan', count: 60  },
-      { month: 'Feb', count: 72  },
-      { month: 'Mar', count: 81  },
-      { month: 'Apr', count: 95  },
-      { month: 'May', count: 110 },
-      { month: 'Jun', count: 96  },
-    ]).pipe(delay(150));
+    return this.api.get<any>('/api/dashboard/monthly-trends', { months: 6 }).pipe(
+      map((data: any) => {
+        return data.labels.map((label: string, index: number) => ({
+          month: label,
+          count: data.feedbackCounts[index]
+        }));
+      })
+    );
   }
 
   getMonthlyRecognitionTrend$(): Observable<MonthlyTrend[]> {
-    return of([
-      { month: 'Jan', count: 30  },
-      { month: 'Feb', count: 42  },
-      { month: 'Mar', count: 55  },
-      { month: 'Apr', count: 64  },
-      { month: 'May', count: 70  },
-      { month: 'Jun', count: 61  },
-    ]).pipe(delay(150));
+    return this.api.get<any>('/api/dashboard/monthly-trends', { months: 6 }).pipe(
+      map((data: any) => {
+        return data.labels.map((label: string, index: number) => ({
+          month: label,
+          count: data.recognitionCounts[index]
+        }));
+      })
+    );
   }
 
   getActivityLog$(): Observable<ActivityItem[]> {
+    // Activity log from ActivityController - mock for now since it needs different endpoint
     return of([
       { time: '2 min ago',  user: 'Amit',  action: 'Gave Feedback',    details: 'Communication' },
       { time: '10 min ago', user: 'Admin', action: 'Disabled Category',details: 'Time Management' },

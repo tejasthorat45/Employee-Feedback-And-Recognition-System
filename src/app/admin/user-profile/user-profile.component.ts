@@ -15,9 +15,9 @@ export class UserProfileComponent {
   @Input() user!: User;
 
   @Output() closed = new EventEmitter<void>();
-  @Output() edit = new EventEmitter<number>();
-  @Output() toggleStatus = new EventEmitter<number>();
-  @Output() resetPassword = new EventEmitter<number>();
+  @Output() edit = new EventEmitter<string>();
+  @Output() toggleStatus = new EventEmitter<string>();
+  @Output() resetPassword = new EventEmitter<string>();
 
   onBackdropClick() {
     this.closed.emit();

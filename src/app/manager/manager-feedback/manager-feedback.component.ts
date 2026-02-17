@@ -1,20 +1,11 @@
+
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-//import { EmployeeService, Feedback as ServiceFeedback } from '../../employee/service/employee.service';
-import { ManagerService } from '../service/manager_service'; 
+import { ManagerService } from '../service/manager.service';
+import { ManagerFeedbackItem, PagedResult } from '../models/manager.models';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
-
-interface Feedback {
-  id: number;
-  employeeId: string;
-  employeeName: string;
-  category: string;
-  date: string;
-  status: 'Pending' | 'Acknowledged' | 'Resolved';
-  details: string;
-}
 
 @Component({
   selector: 'app-manager-feedback',
@@ -24,86 +15,105 @@ interface Feedback {
   styleUrls: ['./manager-feedback.component.css']
 })
 export class ManagerFeedbackComponent implements OnInit {
-  feedbackList: Feedback[] = [];
-  filteredList: Feedback[] = [];
+  feedbackList: ManagerFeedbackItem[] = [];
+  filteredList: ManagerFeedbackItem[] = [];
   searchText = '';
+  isLoading = false;
+  errorMessage: string | null = null;
 
-  constructor(
-    // private employeeService: EmployeeService,
-    private managerService: ManagerService
-  ) {}
+  constructor(private managerService: ManagerService) {}
 
   ngOnInit(): void {
-    this.refreshData();
+    this.loadFeedback();
   }
 
-  refreshData(): void {
-    const rawData = this.managerService.getAllFeedback();
-    
-    this.feedbackList = rawData.map((f, index) => ({
-      id: f.id || f.feedbackId || index, 
-      employeeId: f.targetUserId || 'N/A', 
-      employeeName: f.isAnonymous ? 'Anonymous' : (f.searchEmployee || 'Unknown'),
-      category: f.category,
-      date: f.submissionDate,
-      status: f.status || 'Pending',
-      details: f.comments
-    }));
-
-    this.filteredList = [...this.feedbackList];
+  loadFeedback(): void {
+    this.isLoading = true;
+    this.errorMessage = null;
+    this.managerService.getAllFeedback({ pageSize: 100 })
+      .subscribe({
+        next: (result: PagedResult<ManagerFeedbackItem>) => {
+          this.feedbackList = result.items;
+          this.filteredList = [...this.feedbackList];
+          this.isLoading = false;
+        },
+        error: (err) => {
+          this.errorMessage = err.message || 'Failed to load feedback';
+          this.isLoading = false;
+        }
+      });
   }
 
   filterFeedback(): void {
     const q = this.searchText.trim().toLowerCase();
     this.filteredList = this.feedbackList.filter(f =>
-      f.employeeName.toLowerCase().includes(q) || 
-      f.employeeId.toLowerCase().includes(q) || 
-      f.category.toLowerCase().includes(q)
+      f.fromUserName.toLowerCase().includes(q) ||
+      f.toUserId.toLowerCase().includes(q) ||
+      f.categoryName.toLowerCase().includes(q)
     );
   }
 
   updateStatus(id: number, newStatus: 'Acknowledged' | 'Resolved'): void {
-    this.managerService.updateFeedbackStatus(id, newStatus);
-    this.refreshData();
+    this.isLoading = true;
+    this.managerService.updateFeedbackStatus(id, newStatus)
+      .subscribe({
+        next: (success) => {
+          if (success) this.loadFeedback();
+          else this.errorMessage = 'Failed to update status';
+        },
+        error: (err) => {
+          this.errorMessage = err.message || 'Failed to update status';
+          this.isLoading = false;
+        }
+      });
   }
 
-  downloadSinglePDF(feedback: Feedback) {
+
+  downloadSinglePDF(feedback: ManagerFeedbackItem) {
     const doc = new jsPDF();
-    doc.text(`Feedback Report - ${feedback.employeeId}`, 14, 20);
+    doc.text(`Feedback Report - ${feedback.toUserId}`, 14, 20);
     autoTable(doc, {
       startY: 30,
       head: [['Field', 'Details']],
       body: [
-        ['Employee ID', feedback.employeeId],
-        ['Employee Name', feedback.employeeName],
-        ['Category', feedback.category],
-        ['Date', feedback.date],
+        ['From', feedback.fromUserName],
+        ['To', feedback.toUserName],
+        ['Category', feedback.categoryName],
+        ['Date', feedback.createdAt],
         ['Status', feedback.status],
-        ['Details', feedback.details]
+        ['Comments', feedback.comments]
       ],
     });
-    doc.save(`Feedback_${feedback.employeeId}.pdf`);
+    doc.save(`Feedback_${feedback.toUserId}.pdf`);
   }
+
 
   downloadFullReport() {
     const doc = new jsPDF();
     doc.text('Team Feedback Summary Report', 14, 20);
     autoTable(doc, {
       startY: 30,
-      head: [['#', 'ID', 'Employee', 'Category', 'Date', 'Status']],
-      body: this.filteredList.map((f, i) => [i + 1, f.employeeId, f.employeeName, f.category, f.date, f.status]),
+      head: [['#', 'From', 'To', 'Category', 'Date', 'Status']],
+      body: this.filteredList.map((f, i) => [
+        i + 1,
+        f.fromUserName,
+        f.toUserName,
+        f.categoryName,
+        f.createdAt,
+        f.status
+      ]),
     });
     doc.save('Team_Feedback_Report.pdf');
   }
 
   viewFeedback(id: number): void {
-    const item = this.feedbackList.find(f => f.id === id);
+    const item = this.feedbackList.find(f => f.feedbackId === id);
     if (item) {
-      alert(`Feedback Details:\n${item.details}`);
+      alert(`Feedback Details:\n${item.comments}`);
     }
-  } 
+  }
 
-  trackById(_: number, item: Feedback): number {
-    return item.id;
+  trackById(_: number, item: ManagerFeedbackItem): number {
+    return item.feedbackId;
   }
 }

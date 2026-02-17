@@ -12,15 +12,20 @@ namespace FeedbackSystem.API.Controllers
     public class AdminInsightsController : ControllerBase
     {
         private readonly IInsightsService _service;
+        private readonly ISentimentService _sentimentService;
 
-        public AdminInsightsController(IInsightsService service) => _service = service;
+        public AdminInsightsController(IInsightsService service, ISentimentService sentimentService)
+        {
+            _service = service;
+            _sentimentService = sentimentService;
+        }
 
         // Helpers to read requester identity
-        private int GetRequesterUserId()
+        private string GetRequesterUserId()
         {
             var id = User.FindFirstValue(ClaimTypes.NameIdentifier) ?? User.FindFirstValue("userId");
             if (string.IsNullOrWhiteSpace(id)) throw new UnauthorizedAccessException("UserId claim missing.");
-            return int.Parse(id);
+            return id;
         }
         private bool IsAdmin() =>
             string.Equals(User.FindFirstValue(ClaimTypes.Role), "Admin", StringComparison.OrdinalIgnoreCase);
@@ -28,10 +33,10 @@ namespace FeedbackSystem.API.Controllers
         // ---------------- By USER ----------------
 
         // GET /api/admin/users/{userId}/feedback/given?from=&to=&categoryId=&search=&page=&pageSize=
-        [HttpGet("users/{userId:int}/feedback/given")]
+        [HttpGet("users/{userId}/feedback/given")]
         public async Task<ActionResult<PagedResult<FeedbackItemDto>>> GetFeedbackGiven(
-            int userId, [FromQuery] DateTime? from, [FromQuery] DateTime? to,
-            [FromQuery] int? categoryId, [FromQuery] string? search,
+            string userId, [FromQuery] DateTime? from, [FromQuery] DateTime? to,
+            [FromQuery] string? categoryId, [FromQuery] string? search,
             [FromQuery] int page = 1, [FromQuery] int pageSize = 20, CancellationToken ct = default)
         {
             var requesterId = GetRequesterUserId();
@@ -41,10 +46,10 @@ namespace FeedbackSystem.API.Controllers
         }
 
         // GET /api/admin/users/{userId}/feedback/received
-        [HttpGet("users/{userId:int}/feedback/received")]
+        [HttpGet("users/{userId}/feedback/received")]
         public async Task<ActionResult<PagedResult<FeedbackItemDto>>> GetFeedbackReceived(
-            int userId, [FromQuery] DateTime? from, [FromQuery] DateTime? to,
-            [FromQuery] int? categoryId, [FromQuery] string? search,
+            string userId, [FromQuery] DateTime? from, [FromQuery] DateTime? to,
+            [FromQuery] string? categoryId, [FromQuery] string? search,
             [FromQuery] int page = 1, [FromQuery] int pageSize = 20, CancellationToken ct = default)
         {
             var requesterId = GetRequesterUserId();
@@ -54,9 +59,9 @@ namespace FeedbackSystem.API.Controllers
         }
 
         // GET /api/admin/users/{userId}/recognitions/given
-        [HttpGet("users/{userId:int}/recognitions/given")]
+        [HttpGet("users/{userId}/recognitions/given")]
         public async Task<ActionResult<PagedResult<RecognitionItemDto>>> GetRecognitionsGiven(
-            int userId, [FromQuery] DateTime? from, [FromQuery] DateTime? to,
+            string userId, [FromQuery] DateTime? from, [FromQuery] DateTime? to,
             [FromQuery] string? search, [FromQuery] int page = 1, [FromQuery] int pageSize = 20,
             CancellationToken ct = default)
         {
@@ -67,9 +72,9 @@ namespace FeedbackSystem.API.Controllers
         }
 
         // GET /api/admin/users/{userId}/recognitions/received
-        [HttpGet("users/{userId:int}/recognitions/received")]
+        [HttpGet("users/{userId}/recognitions/received")]
         public async Task<ActionResult<PagedResult<RecognitionItemDto>>> GetRecognitionsReceived(
-            int userId, [FromQuery] DateTime? from, [FromQuery] DateTime? to,
+            string userId, [FromQuery] DateTime? from, [FromQuery] DateTime? to,
             [FromQuery] string? search, [FromQuery] int page = 1, [FromQuery] int pageSize = 20,
             CancellationToken ct = default)
         {
@@ -80,8 +85,8 @@ namespace FeedbackSystem.API.Controllers
         }
 
         // GET /api/admin/users/{userId}/insights/summary
-        [HttpGet("users/{userId:int}/insights/summary")]
-        public async Task<ActionResult<UserInsightSummaryDto>> GetUserSummary(int userId, CancellationToken ct = default)
+        [HttpGet("users/{userId}/insights/summary")]
+        public async Task<ActionResult<UserInsightSummaryDto>> GetUserSummary(string userId, CancellationToken ct = default)
         {
             var requesterId = GetRequesterUserId();
             var result = await _service.GetSummaryAsync(requesterId, IsAdmin(), userId, ct);
@@ -94,9 +99,9 @@ namespace FeedbackSystem.API.Controllers
         // GET /api/admin/feedback?from=&to=&categoryId=&search=&departmentId=&fromUserId=&toUserId=&page=&pageSize=
         [HttpGet("feedback")]
         public async Task<ActionResult<PagedResult<FeedbackItemDto>>> GetAllFeedback(
-            [FromQuery] DateTime? from, [FromQuery] DateTime? to, [FromQuery] int? categoryId,
-            [FromQuery] string? search, [FromQuery] int? departmentId,
-            [FromQuery] int? fromUserId, [FromQuery] int? toUserId,
+            [FromQuery] DateTime? from, [FromQuery] DateTime? to, [FromQuery] string? categoryId,
+            [FromQuery] string? search, [FromQuery] string? departmentId,
+            [FromQuery] string? fromUserId, [FromQuery] string? toUserId,
             [FromQuery] int page = 1, [FromQuery] int pageSize = 20, CancellationToken ct = default)
         {
             var requesterId = GetRequesterUserId();
@@ -109,7 +114,7 @@ namespace FeedbackSystem.API.Controllers
         [HttpGet("recognitions")]
         public async Task<ActionResult<PagedResult<RecognitionItemDto>>> GetAllRecognitions(
             [FromQuery] DateTime? from, [FromQuery] DateTime? to, [FromQuery] string? search,
-            [FromQuery] int? departmentId, [FromQuery] int? fromUserId, [FromQuery] int? toUserId,
+            [FromQuery] string? departmentId, [FromQuery] string? fromUserId, [FromQuery] string? toUserId,
             [FromQuery] int page = 1, [FromQuery] int pageSize = 20, CancellationToken ct = default)
         {
             var requesterId = GetRequesterUserId();
@@ -124,9 +129,9 @@ namespace FeedbackSystem.API.Controllers
         // GET /api/admin/feedback/count?from=&to=&categoryId=&search=&departmentId=&fromUserId=&toUserId=
         [HttpGet("feedback/count")]
         public async Task<ActionResult<CountResultDto>> GetAllFeedbackCount(
-            [FromQuery] DateTime? from, [FromQuery] DateTime? to, [FromQuery] int? categoryId,
-            [FromQuery] string? search, [FromQuery] int? departmentId,
-            [FromQuery] int? fromUserId, [FromQuery] int? toUserId, CancellationToken ct = default)
+            [FromQuery] DateTime? from, [FromQuery] DateTime? to, [FromQuery] string? categoryId,
+            [FromQuery] string? search, [FromQuery] string? departmentId,
+            [FromQuery] string? fromUserId, [FromQuery] string? toUserId, CancellationToken ct = default)
         {
             var requesterId = GetRequesterUserId();
             var filter = new FeedbackAllFilter(from, to, categoryId, search, departmentId, fromUserId, toUserId, 1, 1);
@@ -138,7 +143,7 @@ namespace FeedbackSystem.API.Controllers
         [HttpGet("recognitions/count")]
         public async Task<ActionResult<CountResultDto>> GetAllRecognitionsCount(
             [FromQuery] DateTime? from, [FromQuery] DateTime? to, [FromQuery] string? search,
-            [FromQuery] int? departmentId, [FromQuery] int? fromUserId, [FromQuery] int? toUserId,
+            [FromQuery] string? departmentId, [FromQuery] string? fromUserId, [FromQuery] string? toUserId,
             CancellationToken ct = default)
         {
             var requesterId = GetRequesterUserId();
@@ -159,13 +164,39 @@ namespace FeedbackSystem.API.Controllers
             return Ok(result);
         }
 
-        // GET /api/insight/recognitions/by-category
-        [HttpGet("recognitions/by-category")]
-        public async Task<ActionResult<IReadOnlyList<RecognitionCategoryStatsDto>>> GetRecognitionsByCategory(
+        // GET /api/insight/recognitions/by-badge
+        [HttpGet("recognitions/by-badge")]
+        public async Task<ActionResult<IReadOnlyList<RecognitionBadgeStatsDto>>> GetRecognitionsByBadge(
             CancellationToken ct = default)
         {
-            var result = await _service.GetRecognitionsByCategoryAsync(ct);
+            var result = await _service.GetRecognitionsByBadgeAsync(ct);
+            return Ok(result);
+        }
+
+        // ---------------- SENTIMENT ANALYSIS ----------------
+
+        // GET /api/insight/sentiment/stats?from=&to=&departmentId=
+        [HttpGet("sentiment/stats")]
+        public async Task<ActionResult<SentimentStatsDto>> GetSentimentStats(
+            [FromQuery] DateTime? from, [FromQuery] DateTime? to, 
+            [FromQuery] string? departmentId, CancellationToken ct = default)
+        {
+            var result = await _sentimentService.GetSentimentStatsAsync(from, to, departmentId, ct);
+            return Ok(result);
+        }
+
+        // GET /api/insight/sentiment/feedback?from=&to=&categoryId=&departmentId=&sentiment=&page=&pageSize=
+        [HttpGet("sentiment/feedback")]
+        public async Task<ActionResult<PagedResult<FeedbackWithSentimentDto>>> GetFeedbackWithSentiment(
+            [FromQuery] DateTime? from, [FromQuery] DateTime? to,
+            [FromQuery] string? categoryId, [FromQuery] string? departmentId,
+            [FromQuery] string? sentiment, [FromQuery] int page = 1, [FromQuery] int pageSize = 20,
+            CancellationToken ct = default)
+        {
+            var result = await _sentimentService.GetFeedbackWithSentimentAsync(
+                from, to, categoryId, departmentId, sentiment, page, pageSize, ct);
             return Ok(result);
         }
     }
 }
+

@@ -1,79 +1,124 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { RouterLink, Router, RouterLinkActive } from '@angular/router';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../core/services/auth.service';
+import { ApiService } from '../../core/services/api.service';
+
+interface ProfileData {
+  userId: string;
+  fullName: string;
+  email: string;
+  phone: string | null;
+  role: string;
+  departmentId: string;
+  departmentName: string;
+  createdAt: string;
+}
 
 @Component({
   selector: 'app-manager-profile',
   standalone: true,
-  imports: [ CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './manager-profile.component.html',
   styleUrl: './manager-profile.component.css'
 })
 export class ManagerProfileComponent implements OnInit {
   private authService = inject(AuthService);
+  private apiService = inject(ApiService);
   private router = inject(Router);
 
   isEditing = false;
+  isLoading = false;
+  isSaving = false;
   errorMessage = '';
-  
-  manager: any = {
+  successMessage = '';
+
+  manager = {
     id: '',
     name: '',
     email: '',
     phone: '',
     department: '',
-    location: 'Pune, India',
-    joinDate: ''
+    departmentId: '',
+    joinDate: '',
+    role: '',
+    location: 'Pune, India'
   };
 
-  ngOnInit() {
-    this.authService.user$.subscribe(user => {
-      if (user) {
-        this.manager.id = user.id;
-        
-        // Load persisted data from localStorage first
-        const savedMeta = localStorage.getItem(`user_meta_${user.id}`);
-        if (savedMeta) {
-          const meta = JSON.parse(savedMeta);
-          this.manager.name = meta.name || user.name;
-          this.manager.email = meta.email || user.email;
-          this.manager.phone = meta.phone || '';
-          this.manager.location = meta.location || 'Pune, India';
-        } else {
-          this.manager.name = user.name;
-          this.manager.email = user.email;
-        }
-        
-        // Department logic based on roles array
-        const roles = user.roles || [];
-        this.manager.department = roles.includes('Admin') ? 'Administration' : 'IT Operations';
+  // Validation error flags
+  emailError = '';
+  phoneError = '';
+  nameError = '';
 
-        // Get or Generate persistent random join date
-        this.manager.joinDate = this.getPersistentJoinDate(user.id);
+  ngOnInit() {
+    this.loadProfile();
+  }
+
+  loadProfile(): void {
+    this.isLoading = true;
+    this.errorMessage = '';
+    
+    this.apiService.get<ProfileData>('/api/users/profile').subscribe({
+      next: (profile) => {
+        // Load location from localStorage (not in database)
+        const savedLocation = localStorage.getItem(`user_location_${profile.userId}`);
+        
+        this.manager = {
+          id: profile.userId,
+          name: profile.fullName,
+          email: profile.email,
+          phone: profile.phone || '',
+          department: profile.departmentName,
+          departmentId: profile.departmentId,
+          joinDate: profile.createdAt.split('T')[0],
+          role: profile.role,
+          location: savedLocation || 'Pune, India'
+        };
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error('Failed to load profile:', err);
+        this.isLoading = false;
+        
+        // Fallback to auth service data
+        this.authService.user$.subscribe(user => {
+          if (user) {
+            this.manager.id = user.id;
+            this.manager.name = user.name;
+            this.manager.email = user.email;
+          }
+        });
       }
     });
   }
 
-  // Prevents typing more than 10 digits and non-numeric characters
+  // Validates phone: only digits, max 10
   validatePhone(event: any) {
     const value = event.target.value;
-    // Keep only numbers and limit to 10
     this.manager.phone = value.replace(/[^0-9]/g, '').slice(0, 10);
+    this.phoneError = '';
   }
 
-  private getPersistentJoinDate(userId: string): string {
-    const key = `join_date_${userId}`;
-    let date = localStorage.getItem(key);
-    if (!date) {
-      const year = Math.floor(Math.random() * (2024 - 2020 + 1)) + 2020;
-      const month = String(Math.floor(Math.random() * 12) + 1).padStart(2, '0');
-      const day = String(Math.floor(Math.random() * 28) + 1).padStart(2, '0');
-      date = `${year}-${month}-${day}`;
-      localStorage.setItem(key, date);
+  // Validates email format on blur
+  validateEmail() {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!this.manager.email) {
+      this.emailError = 'Email is required';
+    } else if (!emailRegex.test(this.manager.email)) {
+      this.emailError = 'Please enter a valid email address';
+    } else {
+      this.emailError = '';
     }
-    return date;
+  }
+
+  // Validates name
+  validateName() {
+    if (!this.manager.name || this.manager.name.trim().length < 2) {
+      this.nameError = 'Name must be at least 2 characters';
+    } else {
+      this.nameError = '';
+    }
   }
 
   getInitials(name: string): string {
@@ -84,44 +129,58 @@ export class ManagerProfileComponent implements OnInit {
   toggleEdit() {
     this.isEditing = !this.isEditing;
     this.errorMessage = '';
+    this.successMessage = '';
+    this.emailError = '';
+    this.phoneError = '';
+    this.nameError = '';
   }
 
   saveChanges() {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    // 1. Validation Checks
-    if (!this.manager.name || this.manager.name.trim().length < 2) {
-      this.errorMessage = 'Please enter a valid name.';
-      return;
-    }
-
-    if (!emailRegex.test(this.manager.email)) {
-      this.errorMessage = 'Please enter a valid email address.';
-      return;
-    }
-
+    // Run all validations
+    this.validateName();
+    this.validateEmail();
+    
+    // Phone validation
     if (this.manager.phone && this.manager.phone.length !== 10) {
-      this.errorMessage = 'Phone number must be exactly 10 digits.';
+      this.phoneError = 'Phone number must be exactly 10 digits';
+    }
+
+    // Check if any errors exist
+    if (this.nameError || this.emailError || this.phoneError) {
+      this.errorMessage = 'Please fix the validation errors';
       return;
     }
 
-    // 2. Persist to LocalStorage
-    const metaData = {
-      name: this.manager.name,
-      email: this.manager.email,
-      phone: this.manager.phone,
-      location: this.manager.location
-    };
-    localStorage.setItem(`user_meta_${this.manager.id}`, JSON.stringify(metaData));
-
-    // 3. Update Global Auth State (Updates Topbar name)
-    this.authService.loginWithUser({
-      ...this.manager,
-      roles: this.manager.department === 'Administration' ? ['Admin'] : ['Manager']
-    });
-
+    this.isSaving = true;
     this.errorMessage = '';
-    this.isEditing = false;
+    this.successMessage = '';
+
+    const updatePayload = {
+      fullName: this.manager.name,
+      email: this.manager.email,
+      phone: this.manager.phone || null
+    };
+
+    this.apiService.put('/api/users/profile', updatePayload).subscribe({
+      next: () => {
+        this.isSaving = false;
+        this.isEditing = false;
+        this.successMessage = 'Profile updated successfully!';
+        
+        // Save location to localStorage (not in database)
+        localStorage.setItem(`user_location_${this.manager.id}`, this.manager.location);
+        
+        // Update auth service with new name
+        this.authService.updateUserName(this.manager.name);
+        
+        // Clear success message after 3 seconds
+        setTimeout(() => this.successMessage = '', 3000);
+      },
+      error: (err) => {
+        this.isSaving = false;
+        this.errorMessage = err.error?.message || 'Failed to update profile. Please try again.';
+      }
+    });
   }
 
   onLogout() {

@@ -4,17 +4,12 @@
   scroll-behavior: smooth;
 }
 
-.home-container {
-  background: #0b0e14;
-  color: #ffffff;
-}
+.home-container { background: #0b0e14; color: #ffffff; }
 
-/* --- TRANSPARENT HEADER --- */
+/* --- HEADER --- */
 .glass-header {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   height: 90px;
   display: flex;
   align-items: center;
@@ -22,22 +17,17 @@
   padding: 0 5%;
   z-index: 1000;
   background: transparent;
-  /* Background removed */
-  border-bottom: none;
-  /* Border removed */
+  transition: all 0.3s ease;
 }
 
-.nav-logo {
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: #ffffff;
-  letter-spacing: -1px;
+.glass-header.scrolled {
+  background: rgba(11, 14, 20, 0.85);
+  backdrop-filter: blur(10px);
 }
 
-.nav-actions {
-  display: flex;
-  gap: 15px;
-}
+.nav-logo { font-size: 1.6rem; font-weight: 800; color: #ffffff; }
+
+.nav-actions { display: flex; gap: 15px; }
 
 .nav-btn {
   padding: 12px 28px;
@@ -46,228 +36,131 @@
   cursor: pointer;
   transition: all 0.3s ease;
   border: none;
-  font-size: 0.95rem;
 }
 
 .login-btn {
   background: rgba(255, 255, 255, 0.1);
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(5px);
 }
 
-.login-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
+/* Hide login button on scroll as requested earlier */
+.glass-header.scrolled .login-btn {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
-.register-btn {
-  background: #2563eb;
-  color: #ffffff;
-  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
-}
+.register-btn { background: #2563eb; color: #ffffff; }
 
-.register-btn:hover {
-  background: #1d4ed8;
-  transform: translateY(-2px);
-}
-
-/* --- HERO SECTION --- */
+/* --- HERO (Upper Part) --- */
 .hero-section {
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(rgba(11, 14, 20, 0.3), rgba(11, 14, 20, 0.85)),
-    url('https://plus.unsplash.com/premium_vector-1682269171829-9bac81f32e1d?w=1200');
+  background: linear-gradient(rgba(11, 14, 20, 0.4), rgba(11, 14, 20, 0.85)),
+              url('https://plus.unsplash.com/premium_vector-1682269171829-9bac81f32e1d?w=1200');
   background-size: cover;
   background-position: center;
   text-align: center;
 }
 
-.badge {
-  background: #2563eb;
-  color: #ffffff;
-  padding: 8px 20px;
-  border-radius: 50px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 24px;
-  display: inline-block;
-}
+.project-name { font-size: clamp(3.5rem, 10vw, 6.5rem); font-weight: 900; }
+.project-name span { display: inline-block; opacity: 0; transform: translateY(30px); animation: wordFadeIn 0.8s forwards ease-out; }
+.project-name span:nth-child(2) { animation-delay: 0.3s; }
+@keyframes wordFadeIn { to { opacity: 1; transform: translateY(0); } }
 
-.project-name {
-  font-size: clamp(3.5rem, 10vw, 6.5rem);
-  font-weight: 900;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  color: #ffffff;
-}
+.mouse-icon { width: 26px; height: 42px; border: 2px solid #ffffff; border-radius: 15px; position: relative; margin: 15px auto; }
+.wheel { width: 4px; height: 8px; background: #60a5fa; border-radius: 2px; position: absolute; left: 50%; transform: translateX(-50%); top: 8px; animation: scrollWheel 1.5s infinite; }
+@keyframes scrollWheel { 0% { opacity: 1; top: 8px; } 100% { opacity: 0; top: 25px; } }
 
-.project-name span {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: wordFadeIn 0.8s forwards ease-out;
-}
-
-.project-name span:nth-child(2) {
-  animation-delay: 0.3s;
-}
-
-@keyframes wordFadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.project-subtitle {
-  font-size: clamp(1.1rem, 2vw, 1.4rem);
-  color: #cbd5e1;
-  margin-top: 15px;
-}
-
-.explore-btn {
-  margin-top: 60px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-}
-
-.philosophy-text {
-  color: #ffffff !important;
-  font-weight: 700;
-  text-shadow: 0 0 15px rgba(37, 99, 235, 0.6);
-}
-
-.mouse-icon {
-  width: 26px;
-  height: 42px;
-  border: 2px solid #ffffff;
-  border-radius: 15px;
-  position: relative;
-}
-
-.wheel {
-  width: 4px;
-  height: 8px;
-  background: #60a5fa;
-  border-radius: 2px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 8px;
-  animation: scrollWheel 1.5s infinite;
-}
-
-@keyframes scrollWheel {
-  0% {
-    opacity: 1;
-    top: 8px;
-  }
-
-  100% {
-    opacity: 0;
-    top: 25px;
-  }
-}
-
-/* --- ABOUT & ROLES --- */
-
+/* --- MIDDLE SECTION (Energetic About) --- */
 .about-section {
-  padding: 120px 20px;
+  padding: 100px 5%;
   background: #ffffff;
   color: #1e293b;
-}
-
-.about-content {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 60px;
+  min-height: 100vh;
+  display: flex;
   align-items: center;
 }
 
-.highlight {
-  color: #2563eb;
-}
+.section-container { max-width: 1200px; margin: 0 auto; width: 100%; }
+.about-header { text-align: center; margin-bottom: 60px; }
+.about-header h2 { font-size: 3rem; font-weight: 800; color: #0f172a; }
+.highlight { color: #2563eb; }
 
-.stat-item {
-  background: #f8fafc;
-  padding: 30px;
-  border-radius: 20px;
-  border: 1px solid #e2e8f0;
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.stat-val {
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: #2563eb;
-  display: block;
-}
-
-.roles-section {
-  padding: 100px 20px;
-  background: #f1f5f9;
-  color: #1e293b;
-}
-
-.section-header {
-  text-align: center;
-  margin-bottom: 60px;
-}
-
-.cards-grid {
+.features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
+.feature-card {
+  padding: 40px;
+  background: #f8fafc;
+  border-radius: 30px;
+  border: 1px solid #e2e8f0;
+  transition: 0.4s ease;
+  text-align: center;
+}
 
+.feature-card:hover { transform: translateY(-15px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
 
+.highlighted-card { background: #0f172a; color: #ffffff; border: none; transform: scale(1.05); }
+.highlighted-card h3 { color: #ffffff; }
+.card-icon { font-size: 3rem; margin-bottom: 20px; display: block; }
+
+/* --- ROLES (Bottom Part - Image Style) --- */
+.roles-section {
+  padding: 100px 5%;
+  background: linear-gradient(rgba(11, 14, 20, 0.7), rgba(11, 14, 20, 0.7)),
+              url('https://plus.unsplash.com/premium_vector-1682269171829-9bac81f32e1d?w=1200');
+  background-size: cover;
+  background-attachment: fixed;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.roles-title { font-size: 3rem; font-weight: 700; margin-bottom: 10px; color: #ffffff; }
+.roles-subtitle { color: #cbd5e1; margin-bottom: 50px; }
+
+.cards-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
 
 .glass-card {
-  background: #ffffff;
-  border-radius: 24px;
-  padding: 40px 30px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+  padding: 40px;
+  width: 320px;
   text-decoration: none;
-  border: 1px solid #e2e8f0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: transform 0.3s ease;
+  transition: 0.3s;
+  color: #ffffff;
 }
 
-.glass-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-}
+.glass-card:hover { transform: translateY(-10px); background: rgba(255, 255, 255, 0.15); }
 
 .icon-box {
-  width: 80px;
-  height: 80px;
-  background: #eef2ff;
-  padding: 15px;
+  width: 90px; height: 90px;
+  background: #ffffff;
   border-radius: 20px;
-  margin-bottom: 20px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
 }
 
-.portal-link {
-  margin-top: 20px;
-  font-weight: 700;
-  color: #2563eb;
-  background: #f8fafc;
-  padding: 10px 20px;
-  border-radius: 12px;
+.icon-box img { width: 60%; }
 
+.portal-link {
+  display: block;
+  margin-top: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  opacity: 0.7;
 }

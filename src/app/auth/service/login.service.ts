@@ -6,7 +6,7 @@ export interface AuthResponseDto {
   token: string;
   expiresAt?: string;
   user: {
-    userId: number | string;
+    userId: string;
     fullName?: string;
     name?: string;
     email: string;

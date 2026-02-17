@@ -59,12 +59,12 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  background: var(--card);
-  border: 1px solid var(--border);
+  background: rgba(255, 138, 76, 0.08);
+  border: 1px solid rgba(255, 138, 76, 0.3);
   border-radius: 999px;                    /* pill */
   padding: 10px 14px 10px 42px;            /* space for icon */
   min-width: 280px;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 4px 12px rgba(255, 138, 76, 0.12);
   transition: box-shadow var(--t-fast), border-color var(--t-fast);
 }
 
@@ -72,7 +72,7 @@
   position: absolute;
   left: 14px;
   font-size: 1rem;
-  color: #8a94a6;
+  color: #ff8a4c;
 }
 
 .search-input {
@@ -83,24 +83,25 @@
   width: 100%;
   font-size: 0.98rem;
 }
-.search-input::placeholder { color: #9aa4b2; }
+.search-input::placeholder { color: rgba(255, 138, 76, 0.6); }
 
 .search-clear {
   border: 0;
-  background: #f1f5f9;
-  color: #64748b;
+  background: rgba(255, 138, 76, 0.15);
+  color: #ff8a4c;
   padding: 6px 10px;
   border-radius: 999px;
   cursor: pointer;
   transition: background var(--t-fast), color var(--t-fast);
 }
-.search-clear:hover { background: #e2e8f0; color: #0f172a; }
+.search-clear:hover { 
+  background: rgba(255, 138, 76, 0.25); 
+  color: #e67a3c; 
+}
 
 .user-search .search-wrap:focus-within {
-  border-color: color-mix(in oklab, var(--primary-600) 55%, #ffffff 45%);
-  box-shadow:
-    0 0 0 3px color-mix(in oklab, var(--primary-600) 18%, #ffffff 82%),
-    var(--shadow-md);
+  border-color: rgba(255, 138, 76, 0.6);
+  box-shadow: 0 6px 18px rgba(255, 138, 76, 0.18);
 }
 
 /* =========================

@@ -1,0 +1,77 @@
+<section class="page">
+  <header class="header">
+    <h2>Department Management</h2>
+    <button class="btn primary" (click)="startAdd()" *ngIf="!addMode()">+ Add Department</button>
+  </header>
+
+  <div class="status" *ngIf="loading()">Loading...</div>
+  <div class="status error" *ngIf="error()">{{ error() }}</div>
+
+  <!-- Add Form -->
+  <div class="card" *ngIf="addMode()">
+    <h3>Add Department</h3>
+    <form [formGroup]="addForm" (ngSubmit)="saveAdd()" class="form-grid">
+      <label>
+        <span>Department Name</span>
+        <input formControlName="departmentName" placeholder="e.g., Engineering" />
+      </label>
+
+      <label class="full">
+        <span>Description</span>
+        <textarea rows="3" formControlName="description" placeholder="Short description"></textarea>
+      </label>
+
+      <div class="actions">
+        <button class="btn primary" type="submit" [disabled]="addForm.invalid">Save</button>
+        <button class="btn" type="button" (click)="cancelAdd()">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- List -->
+  <div class="card">
+    <table class="table">
+      <thead>
+        <tr>
+          <th style="width:140px">Dept ID</th>
+          <th>Department Name</th>
+          <th>Description</th>
+          <th style="width:200px">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let d of departments(); trackBy: trackById">
+          <td>{{ d.departmentId }}</td>
+
+          <!-- View row -->
+          <ng-container *ngIf="editRowId() !== d.departmentId; else editRow">
+            <td>{{ d.departmentName }}</td>
+            <td>{{ d.description }}</td>
+            <td class="row-actions">
+              <button class="btn" (click)="startEdit(d)">Edit</button>
+              <button class="btn danger" (click)="delete(d)">Delete</button>
+            </td>
+          </ng-container>
+
+          <!-- Edit row -->
+          <ng-template #editRow>
+            <td>
+              <input [formControl]="editForm.controls.departmentName" />
+            </td>
+            <td>
+              <textarea rows="2" [formControl]="editForm.controls.description"></textarea>
+            </td>
+            <td class="row-actions">
+              <button class="btn primary" (click)="saveEdit(d)" [disabled]="editForm.invalid">Save</button>
+              <button class="btn" (click)="cancelEdit()">Cancel</button>
+            </td>
+          </ng-template>
+        </tr>
+
+        <tr *ngIf="!loading() && departments().length === 0">
+          <td colspan="4" class="empty">No departments yet. Click “Add Department”.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

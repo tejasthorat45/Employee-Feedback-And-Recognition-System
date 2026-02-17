@@ -4,7 +4,7 @@ namespace FeedbackSystem.API.Entities
 {
     public class Department
     {
-        public int DepartmentId { get; set; }
+        public string DepartmentId { get; set; } = null!;
 
         [Required, MaxLength(100)]
         public string DepartmentName { get; set; } = null!;

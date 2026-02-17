@@ -16,8 +16,8 @@ public class CategoriesController : ControllerBase
     public async Task<ActionResult<List<CategoryReadDto>>> GetAll(CancellationToken ct)
         => Ok(await _service.GetAllAsync(ct));
 
-    [HttpGet("{id:int}")]
-    public async Task<ActionResult<CategoryReadDto>> GetById(int id, CancellationToken ct)
+    [HttpGet("{id}")]
+    public async Task<ActionResult<CategoryReadDto>> GetById(string id, CancellationToken ct)
     {
         var item = await _service.GetByIdAsync(id, ct);
         return item is null ? NotFound() : Ok(item);
@@ -39,13 +39,13 @@ public class CategoriesController : ControllerBase
         }
     }
 
-    [HttpPut("{id:int}")]
+    [HttpPut("{id}")]
     [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> Update(int id, CategoryUpdateDto dto, CancellationToken ct)
+    public async Task<IActionResult> Update(string id, CategoryUpdateDto dto, CancellationToken ct)
         => await _service.UpdateAsync(id, dto, ct) ? NoContent() : NotFound();
 
-    [HttpDelete("{id:int}")]
+    [HttpDelete("{id}")]
     [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> Delete(int id, CancellationToken ct)
+    public async Task<IActionResult> Delete(string id, CancellationToken ct)
         => await _service.DeleteAsync(id, ct) ? NoContent() : NotFound();
 }

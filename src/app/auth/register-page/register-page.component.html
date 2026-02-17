@@ -38,20 +38,23 @@
               <small class="error" *ngIf="f['email'].touched && f['email'].invalid">Valid email required</small>
             </div>
 
-            <div class="field">
+            <!-- <div class="field">
               <label>Role</label>
               <select formControlName="role">
                 <option>{{ "employee" | titlecase }}</option>?
-                <!-- <option *ngFor="let r of roles" [value]="r">{{ r | titlecase }}</option>? -->
+                <option *ngFor="let r of roles" [value]="r">{{ r | titlecase }}</option>?
               </select>
-            </div>
+            </div> -->
 
             <div class="field">
               <label>Department</label>
               <select formControlName="department">
                 <option value="" disabled>Select department</option>
-                <option *ngFor="let d of departments" [value]="d">{{ d }}</option>
+                <option *ngFor="let d of departments" [value]="d.departmentId">{{ d.departmentName }}</option>
               </select>
+              <small class="error" *ngIf="f['department'].touched && f['department'].invalid">
+                Department is required
+              </small>
             </div>
             
             <div class="field">

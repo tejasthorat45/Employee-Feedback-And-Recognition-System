@@ -12,24 +12,53 @@
 
           <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
 
-            <div class="mb-3">
-              <label class="form-label fw-bold">Search Employee</label>
+            <div class="mb-3 position-relative">
+              <label class="form-label fw-bold">Employee Name <span class="text-danger">*</span></label>
               <div class="input-group">
-                <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
-                <input type="text" list="empList" formControlName="searchEmployee" class="form-control"
-                  placeholder="Type name or department...">
+                <span class="input-group-text bg-white"><i class="bi bi-person-fill"></i></span>
+                <input type="text" formControlName="employeeName" class="form-control"
+                  placeholder="Type employee name..." (input)="onNameChange($event)"
+                  [class.is-invalid]="feedbackForm.get('employeeName')?.touched && feedbackForm.get('employeeName')?.invalid">
               </div>
-              <datalist id="empList">
-                <option *ngFor="let emp of employees" [value]="emp.name"></option>
-              </datalist>
+              <small class="text-muted">Start typing to see suggestions</small>
+              <div *ngIf="feedbackForm.get('employeeName')?.touched && feedbackForm.get('employeeName')?.invalid"
+                   class="text-danger small mt-1">
+                Employee name is required
+              </div>
+              
+              @if (filteredEmployees().length > 0) {
+              <ul class="list-group position-absolute w-100 z-3 shadow-lg mt-1" style="max-height: 200px; overflow-y: auto;">
+                @for (emp of filteredEmployees(); track emp.id) {
+                <li class="list-group-item list-group-item-action border-0 py-2 cursor-pointer" (click)="selectEmployee(emp)">
+                  <div class="d-flex align-items-center">
+                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2" 
+                         style="width: 32px; height: 32px; font-size: 14px; font-weight: bold;">
+                      {{ emp.name.charAt(0).toUpperCase() }}
+                    </div>
+                    <div>
+                      <div class="fw-bold">{{ emp.name }} <span class="text-muted">({{ emp.id }})</span></div>
+                      <div class="text-muted small">{{ emp.email }}</div>
+                    </div>
+                  </div>
+                </li>
+                }
+              </ul>
+              }
             </div>
 
             <div class="row">
               <div class="col-md-6 mb-3">
-                <label class="form-label fw-bold">Employee ID</label>
+                <label class="form-label fw-bold">Employee ID <span class="text-danger">*</span></label>
                 <div class="input-group">
                   <span class="input-group-text bg-light"><i class="bi bi-person-badge"></i></span>
-                  <input type="text" formControlName="employeeId" class="form-control" placeholder="ID Number" readonly>
+                  <input type="text" formControlName="employeeId" class="form-control" 
+                         placeholder="Auto-filled or type ID..." (input)="onEmployeeIdChange($event)"
+                         [class.is-invalid]="feedbackForm.get('employeeId')?.touched && feedbackForm.get('employeeId')?.invalid">
+                </div>
+                <small class="text-muted">Auto-fills when name is selected</small>
+                <div *ngIf="feedbackForm.get('employeeId')?.touched && feedbackForm.get('employeeId')?.invalid"
+                     class="text-danger small mt-1">
+                  Employee ID is required
                 </div>
               </div>
 
@@ -39,7 +68,7 @@
                   <span class="input-group-text bg-light"><i class="bi bi-tag"></i></span>
                   <select formControlName="category" class="form-select">
                     <option value="" disabled>Select...</option>
-                    <option *ngFor="let cat of categories" [value]="cat.name">{{cat.name}}</option>
+                    <option *ngFor="let cat of categories" [value]="cat.categoryId">{{cat.categoryName}}</option>
                   </select>
                 </div>
               </div>
@@ -78,7 +107,7 @@
             </div>
 
             <div class="d-grid">
-              <button type="submit" class="btn btn-primary btn-lg rounded-pill" [disabled]="feedbackForm.invalid">
+              <button type="submit" class="btn btn-primary btn-lg rounded-pill" [disabled]="feedbackForm.invalid || !selectedEmp()">
                 <i class="bi bi-send me-2"></i> Submit Feedback
               </button>
             </div>

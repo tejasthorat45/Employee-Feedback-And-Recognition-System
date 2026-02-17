@@ -5,7 +5,7 @@
     {
         public int ReviewId { get; set; }
         public int FeedbackId { get; set; }
-        public int ReviewedBy { get; set; }
+        public string ReviewedBy { get; set; } = null!;
         public string Status { get; set; } = null!;
         public string? Remarks { get; set; }
         public DateTime ReviewedAt { get; set; }

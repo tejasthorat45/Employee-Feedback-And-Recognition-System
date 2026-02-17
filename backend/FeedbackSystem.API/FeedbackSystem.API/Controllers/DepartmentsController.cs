@@ -22,9 +22,9 @@ public class DepartmentsController : ControllerBase
         return Ok(departments);
     }
 
-    [HttpGet("{id:int}")]
+    [HttpGet("{id}")]
     [AllowAnonymous]
-    public async Task<ActionResult<DepartmentReadDto>> GetById(int id, CancellationToken ct)
+    public async Task<ActionResult<DepartmentReadDto>> GetById(string id, CancellationToken ct)
     {
         var dept = await _service.GetByIdAsync(id, ct);
         if (dept is null) return NotFound(new { message = "Department not found." });
@@ -45,8 +45,8 @@ public class DepartmentsController : ControllerBase
         }
     }
 
-    [HttpPut("{id:int}")]
-    public async Task<IActionResult> Update(int id, DepartmentUpdateDto dto, CancellationToken ct)
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(string id, DepartmentUpdateDto dto, CancellationToken ct)
     {
         try
         {
@@ -60,11 +60,18 @@ public class DepartmentsController : ControllerBase
         }
     }
 
-    [HttpDelete("{id:int}")]
-    public async Task<IActionResult> Delete(int id, CancellationToken ct)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(string id, CancellationToken ct)
     {
-        var deleted = await _service.DeleteAsync(id, ct);
-        if (!deleted) return NotFound(new { message = "Department not found." });
-        return NoContent();
+        try
+        {
+            var deleted = await _service.DeleteAsync(id, ct);
+            if (!deleted) return NotFound(new { message = "Department not found." });
+            return NoContent();
+        }
+        catch (InvalidOperationException ex)
+        {
+            return Conflict(new { message = ex.Message });
+        }
     }
 }

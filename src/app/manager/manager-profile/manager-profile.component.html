@@ -1,11 +1,23 @@
 <div class="min-h-screen bg-gray-100 p-6 flex flex-col items-center gap-6">
 
-  <div *ngIf="errorMessage" class="w-full max-w-4xl p-4 mb-2 text-sm text-red-800 rounded-lg bg-red-50 border border-red-200 animate-pulse" role="alert">
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="w-full max-w-4xl p-8 flex justify-center">
+    <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600"></div>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="w-full max-w-4xl p-4 mb-2 text-sm text-red-800 rounded-lg bg-red-50 border border-red-200" role="alert">
     <i class="bi bi-exclamation-triangle-fill me-2"></i>
     <span class="font-bold">Error:</span> {{ errorMessage }}
   </div>
 
-  <div class="bg-white shadow-lg rounded-xl p-8 w-full max-w-4xl">
+  <!-- Success Message -->
+  <div *ngIf="successMessage" class="w-full max-w-4xl p-4 mb-2 text-sm text-green-800 rounded-lg bg-green-50 border border-green-200" role="alert">
+    <i class="bi bi-check-circle-fill me-2"></i>
+    {{ successMessage }}
+  </div>
+
+  <div *ngIf="!isLoading" class="bg-white shadow-lg rounded-xl p-8 w-full max-w-4xl">
     <div class="flex flex-col items-center gap-6">
        
       <div class="flex-shrink-0">
@@ -15,24 +27,30 @@
       </div>
 
       <div class="text-center w-full"> 
-        <div *ngIf="isEditing" class="mb-2 flex justify-center">
+        <div *ngIf="isEditing" class="mb-2 flex flex-col items-center">
            <input [(ngModel)]="manager.name" 
+                  (blur)="validateName()"
                   class="text-3xl font-bold text-gray-800 border-b-2 border-blue-500 outline-none text-center bg-transparent w-full max-w-md"
+                  [class.border-red-500]="nameError"
                   placeholder="Enter Full Name">
+           <small *ngIf="nameError" class="text-red-500 mt-1">{{ nameError }}</small>
         </div>
         <h2 *ngIf="!isEditing" class="text-3xl font-bold text-gray-800">{{ manager.name }}</h2>
         
-        <p class="text-blue-600 font-medium mb-6 text-lg">Manager</p>
+        <p class="text-blue-600 font-medium mb-6 text-lg">{{ manager.role }}</p>
         
         <div class="flex flex-wrap justify-center gap-3">
           <button (click)="toggleEdit()" 
-            class="px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition shadow-sm">
+            [disabled]="isSaving"
+            class="px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition shadow-sm disabled:opacity-50">
             {{ isEditing ? 'Cancel' : 'Edit Profile' }}
           </button>
 
           <button *ngIf="isEditing" (click)="saveChanges()" 
-            class="px-6 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition shadow-sm">
-            Save Changes
+            [disabled]="isSaving"
+            class="px-6 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition shadow-sm disabled:opacity-50 flex items-center gap-2">
+            <span *ngIf="isSaving" class="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></span>
+            {{ isSaving ? 'Saving...' : 'Save Changes' }}
           </button>
 
           <button (click)="onLogout()" 
@@ -44,7 +62,7 @@
     </div>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
+  <div *ngIf="!isLoading" class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
     
     <div class="bg-white shadow-md rounded-xl p-6 border-t-4 border-blue-500">
       <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
@@ -53,7 +71,7 @@
       </h3>
       <div class="space-y-4">
         <div class="flex justify-between border-b pb-2">
-          <span class="text-gray-500 font-medium">Manager ID</span>
+          <span class="text-gray-500 font-medium">User ID</span>
           <span class="text-gray-900 font-mono font-bold">{{ manager.id }}</span>
         </div>
         <div class="flex justify-between border-b pb-2">
@@ -80,9 +98,13 @@
         <div>
           <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Email Address</label>
           <input *ngIf="isEditing" [(ngModel)]="manager.email" 
+                 (blur)="validateEmail()"
                  type="email"
                  placeholder="name@company.com"
-                 class="w-full p-2 border border-blue-300 rounded focus:ring-2 focus:ring-blue-200 outline-none transition">
+                 class="w-full p-2 border rounded focus:ring-2 focus:ring-blue-200 outline-none transition"
+                 [class.border-red-500]="emailError"
+                 [class.border-blue-300]="!emailError">
+          <small *ngIf="emailError && isEditing" class="text-red-500">{{ emailError }}</small>
           <div *ngIf="!isEditing" class="p-2 bg-gray-50 rounded border text-gray-700">{{ manager.email }}</div>
         </div>
 
@@ -92,10 +114,15 @@
                  [(ngModel)]="manager.phone" 
                  (input)="validatePhone($event)"
                  type="text"
+                 inputmode="numeric"
+                 maxlength="10"
                  placeholder="9876543210"
-                 class="w-full p-2 border border-blue-300 rounded focus:ring-2 focus:ring-blue-200 outline-none transition">
+                 class="w-full p-2 border rounded focus:ring-2 focus:ring-blue-200 outline-none transition"
+                 [class.border-red-500]="phoneError"
+                 [class.border-blue-300]="!phoneError">
+          <small *ngIf="phoneError && isEditing" class="text-red-500">{{ phoneError }}</small>
           <div *ngIf="!isEditing" class="p-2 bg-gray-50 rounded border text-gray-700">
-            {{ manager.phone || '+91 00000 00000' }}
+            {{ manager.phone || 'Not provided' }}
           </div>
         </div>
 

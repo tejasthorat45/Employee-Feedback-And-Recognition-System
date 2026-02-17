@@ -1,7 +1,8 @@
 
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AdminCategoryService, CategoryReadDto, CategoryCreateDto, CategoryUpdateDto } from '../services/admin-category.service';
 
 export interface Category {
   id: string;
@@ -18,25 +19,43 @@ export interface Category {
   styleUrls: ['./category-management.component.css']
 })
 @Injectable({ providedIn: 'root' })
-export class CategoryManagementComponent {
-  // Corporate feedback categories (sample)
-  categories: Category[] = [
-    { id: 'CAT-001', name: 'Communication Skills',    description: 'Clarity, listening, and transparency in interactions', disabled: false },
-    { id: 'CAT-002', name: 'Teamwork & Collaboration', description: 'Working effectively with peers to achieve shared goals', disabled: false },
-    { id: 'CAT-003', name: 'Leadership & Initiative',  description: 'Ownership, guidance, and proactive problem-solving', disabled: true }, // Inactive
-    { id: 'CAT-004', name: 'Adaptability & Flexibility', description: 'Positive response to change and resilience under pressure', disabled: false },
-    { id: 'CAT-005', name: 'Problem-Solving & Decision Making', description: 'Analyzing issues and making sound, timely decisions', disabled: false },
-    { id: 'CAT-006', name: 'Technical Expertise',      description: 'Depth of knowledge in relevant tools, tech, and practices', disabled: false },
-    { id: 'CAT-007', name: 'Time Management & Productivity', description: 'Prioritization, meeting deadlines, and efficiency', disabled: false },
-    { id: 'CAT-008', name: 'Innovation & Creativity',  description: 'Generating ideas, improving processes, and experimentation', disabled: true }, // Inactive
-    { id: 'CAT-009', name: 'Customer Focus',           description: 'Understanding client needs and delivering quality service', disabled: false },
-    { id: 'CAT-010', name: 'Accountability & Reliability', description: 'Owning responsibilities and delivering consistently', disabled: false }
-  ];
+export class CategoryManagementComponent implements OnInit {
+  categories: Category[] = [];
+  loading = false;
+  error: string | null = null;
 
   // Inline Add/Edit form state (ID removed from the form model for add; still kept in object)
   formOpen = false;
   editIndex: number | null = null;
   formModel: Category = { id: '', name: '', description: '', disabled: false };
+
+  constructor(private categoryService: AdminCategoryService) {}
+
+  ngOnInit(): void {
+    this.loadCategories();
+  }
+
+  /** Load categories from API */
+  loadCategories(): void {
+    this.loading = true;
+    this.error = null;
+    this.categoryService.getAll().subscribe({
+      next: (data: CategoryReadDto[]) => {
+        this.categories = data.map(dto => ({
+          id: dto.categoryId,
+          name: dto.categoryName,
+          description: dto.description || '',
+          disabled: !dto.isActive
+        }));
+        this.loading = false;
+      },
+      error: (err) => {
+        this.error = 'Failed to load categories';
+        this.loading = false;
+        console.error(err);
+      }
+    });
+  }
 
   /** --- ID helpers --- */
 
@@ -82,7 +101,23 @@ export class CategoryManagementComponent {
   /** Disable/Enable -> toggles disabled flag */
   toggleDisabled(index: number): void {
     const cat = this.categories[index];
-    cat.disabled = !cat.disabled;
+    const newStatus = !cat.disabled;
+    
+    const dto: CategoryUpdateDto = {
+      categoryName: cat.name,
+      description: cat.description,
+      isActive: !newStatus
+    };
+
+    this.categoryService.update(cat.id, dto).subscribe({
+      next: () => {
+        cat.disabled = newStatus;
+      },
+      error: (err) => {
+        this.error = 'Failed to update category status';
+        console.error(err);
+      }
+    });
   }
 
   /** Save new or updated category */
@@ -95,32 +130,60 @@ export class CategoryManagementComponent {
     }
 
     if (this.editIndex === null) {
-      // ADD: auto-generate ID
+      // ADD: auto-generate ID and call API
       const id = this.getNextCategoryId(this.categories);
 
-      const newCat: Category = {
-        id,
-        name,
-        description: desc,
-        disabled: !!this.formModel.disabled
+      const createDto: CategoryCreateDto = {
+        categoryId: id,
+        categoryName: name,
+        description: desc
       };
-      this.categories = [...this.categories, newCat];
+
+      this.categoryService.create(createDto).subscribe({
+        next: (created) => {
+          const newCat: Category = {
+            id: created.categoryId,
+            name: created.categoryName,
+            description: created.description || '',
+            disabled: !created.isActive
+          };
+          this.categories = [...this.categories, newCat];
+          this.closeForm();
+        },
+        error: (err) => {
+          this.error = 'Failed to create category';
+          console.error(err);
+        }
+      });
     } else {
-      // UPDATE: keep ID unchanged; update other fields
+      // UPDATE: keep ID unchanged; update other fields via API
       const currentId = this.categories[this.editIndex].id;
 
-      const updated: Category = {
-        id: currentId,
-        name,
+      const updateDto: CategoryUpdateDto = {
+        categoryName: name,
         description: desc,
-        disabled: !!this.formModel.disabled
+        isActive: !this.formModel.disabled
       };
-      const next = [...this.categories];
-      next[this.editIndex] = updated;
-      this.categories = next;
-    }
 
-    this.closeForm();
+      this.categoryService.update(currentId, updateDto).subscribe({
+        next: () => {
+          const updated: Category = {
+            id: currentId,
+            name,
+            description: desc,
+            disabled: !!this.formModel.disabled
+          };
+          const next = [...this.categories];
+          next[this.editIndex!] = updated;
+          this.categories = next;
+          this.closeForm();
+        },
+        error: (err) => {
+          this.error = 'Failed to update category';
+          console.error(err);
+        }
+      });
+    }
   }
 
   /** Close the inline form */

@@ -10,13 +10,13 @@ namespace FeedbackSystem.API.Repositories
         public FeedbackRepository(AppDbContext db) => _db = db;
 
         public async Task<(IReadOnlyList<FeedbackItemDto> Items, int Total)> GetGivenAsync(
-            int userId, DateTime? from, DateTime? to, int? categoryId, string? search, int page, int pageSize, CancellationToken ct)
+            string userId, DateTime? from, DateTime? to, string? categoryId, string? search, int page, int pageSize, CancellationToken ct)
         {
             var q = _db.Feedbacks.AsNoTracking().Where(f => f.FromUserId == userId);
 
             if (from.HasValue) q = q.Where(f => f.CreatedAt >= from.Value);
             if (to.HasValue)   q = q.Where(f => f.CreatedAt <= to.Value);
-            if (categoryId.HasValue && categoryId.Value > 0) q = q.Where(f => f.CategoryId == categoryId.Value);
+            if (!string.IsNullOrWhiteSpace(categoryId)) q = q.Where(f => f.CategoryId == categoryId);
             if (!string.IsNullOrWhiteSpace(search)) q = q.Where(f => f.Comments.Contains(search.Trim()));
 
             var total = await q.CountAsync(ct);
@@ -42,13 +42,13 @@ namespace FeedbackSystem.API.Repositories
         }
 
         public async Task<(IReadOnlyList<FeedbackItemDto> Items, int Total)> GetReceivedAsync(
-            int userId, DateTime? from, DateTime? to, int? categoryId, string? search, int page, int pageSize, CancellationToken ct)
+            string userId, DateTime? from, DateTime? to, string? categoryId, string? search, int page, int pageSize, CancellationToken ct)
         {
             var q = _db.Feedbacks.AsNoTracking().Where(f => f.ToUserId == userId);
 
             if (from.HasValue) q = q.Where(f => f.CreatedAt >= from.Value);
             if (to.HasValue)   q = q.Where(f => f.CreatedAt <= to.Value);
-            if (categoryId.HasValue && categoryId.Value > 0) q = q.Where(f => f.CategoryId == categoryId.Value);
+            if (!string.IsNullOrWhiteSpace(categoryId)) q = q.Where(f => f.CategoryId == categoryId);
             if (!string.IsNullOrWhiteSpace(search)) q = q.Where(f => f.Comments.Contains(search.Trim()));
 
             var total = await q.CountAsync(ct);
@@ -74,8 +74,8 @@ namespace FeedbackSystem.API.Repositories
         }
 
         public async Task<(IReadOnlyList<FeedbackItemDto> Items, int Total)> GetAllAsync(
-            DateTime? from, DateTime? to, int? categoryId, string? search, int? departmentScopeId,
-            int? fromUserId, int? toUserId, int page, int pageSize, CancellationToken ct)
+            DateTime? from, DateTime? to, string? categoryId, string? search, string? departmentScopeId,
+            string? fromUserId, string? toUserId, int page, int pageSize, CancellationToken ct)
         {
             var q = ApplyAllFilters(from, to, categoryId, search, departmentScopeId, fromUserId, toUserId);
 
@@ -103,15 +103,15 @@ namespace FeedbackSystem.API.Repositories
 
         // ✅ Count-only (same filters, no projection/paging)
         public Task<int> CountAllAsync(
-            DateTime? from, DateTime? to, int? categoryId, string? search, int? departmentScopeId,
-            int? fromUserId, int? toUserId, CancellationToken ct)
+            DateTime? from, DateTime? to, string? categoryId, string? search, string? departmentScopeId,
+            string? fromUserId, string? toUserId, CancellationToken ct)
         {
             var q = ApplyAllFilters(from, to, categoryId, search, departmentScopeId, fromUserId, toUserId);
             return q.CountAsync(ct);
         }
 
         public async Task<(int Given, int Received, DateTime? LatestGivenAt, DateTime? LatestReceivedAt)> GetSummaryAsync(
-            int userId, CancellationToken ct)
+            string userId, CancellationToken ct)
         {
             var givenCountTask = _db.Feedbacks.AsNoTracking().CountAsync(f => f.FromUserId == userId, ct);
             var receivedCountTask = _db.Feedbacks.AsNoTracking().CountAsync(f => f.ToUserId == userId, ct);
@@ -135,21 +135,21 @@ namespace FeedbackSystem.API.Repositories
 
         // -------------- private helpers --------------
         private IQueryable<Entities.Feedback> ApplyAllFilters(
-            DateTime? from, DateTime? to, int? categoryId, string? search, int? departmentScopeId,
-            int? fromUserId, int? toUserId)
+            DateTime? from, DateTime? to, string? categoryId, string? search, string? departmentScopeId,
+            string? fromUserId, string? toUserId)
         {
             var q = _db.Feedbacks.AsNoTracking().AsQueryable();
 
             if (from.HasValue) q = q.Where(f => f.CreatedAt >= from.Value);
             if (to.HasValue)   q = q.Where(f => f.CreatedAt <= to.Value);
-            if (categoryId.HasValue && categoryId.Value > 0) q = q.Where(f => f.CategoryId == categoryId.Value);
+            if (!string.IsNullOrWhiteSpace(categoryId)) q = q.Where(f => f.CategoryId == categoryId);
             if (!string.IsNullOrWhiteSpace(search)) q = q.Where(f => f.Comments.Contains(search.Trim()));
-            if (fromUserId.HasValue && fromUserId.Value > 0) q = q.Where(f => f.FromUserId == fromUserId.Value);
-            if (toUserId.HasValue && toUserId.Value > 0)     q = q.Where(f => f.ToUserId == toUserId.Value);
+            if (!string.IsNullOrWhiteSpace(fromUserId)) q = q.Where(f => f.FromUserId == fromUserId);
+            if (!string.IsNullOrWhiteSpace(toUserId))     q = q.Where(f => f.ToUserId == toUserId);
 
-            if (departmentScopeId.HasValue && departmentScopeId.Value > 0)
+            if (!string.IsNullOrWhiteSpace(departmentScopeId))
             {
-                var depId = departmentScopeId.Value;
+                var depId = departmentScopeId;
                 q = q.Where(f => f.FromUser.DepartmentId == depId || f.ToUser.DepartmentId == depId);
             }
 
@@ -162,21 +162,21 @@ namespace FeedbackSystem.API.Repositories
 
         // ✅ Category statistics
         public async Task<IReadOnlyList<CategoryStatsDto>> GetByCategoryAsync(
-            DateTime? from, DateTime? to, int? departmentScopeId, int? userId, CancellationToken ct)
+            DateTime? from, DateTime? to, string? departmentScopeId, string? userId, CancellationToken ct)
         {
             var q = _db.Feedbacks.AsNoTracking().AsQueryable();
 
             if (from.HasValue) q = q.Where(f => f.CreatedAt >= from.Value);
             if (to.HasValue)   q = q.Where(f => f.CreatedAt <= to.Value);
 
-            if (departmentScopeId.HasValue && departmentScopeId.Value > 0)
+            if (!string.IsNullOrWhiteSpace(departmentScopeId))
             {
-                var depId = departmentScopeId.Value;
+                var depId = departmentScopeId;
                 q = q.Where(f => f.FromUser.DepartmentId == depId || f.ToUser.DepartmentId == depId);
             }
 
-            if (userId.HasValue)
-                q = q.Where(f => f.FromUserId == userId.Value || f.ToUserId == userId.Value);
+            if (!string.IsNullOrWhiteSpace(userId))
+                q = q.Where(f => f.FromUserId == userId || f.ToUserId == userId);
 
             return await q
                 .GroupBy(f => new { f.CategoryId, f.Category.CategoryName })
